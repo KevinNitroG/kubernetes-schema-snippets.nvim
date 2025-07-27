@@ -2,14 +2,13 @@
 
 Add inline schema references from [yannh/kubernetes-json-schema](https://github.com/yannh/kubernetes-json-schema) for YAML file using snippet.
 
-Example:
-
-```yaml
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.33.2-standalone-strict/deployment.json
-```
+[![asciicast](https://asciinema.org/a/730130.svg)](https://asciinema.org/a/730130)
 
 > [!NOTE]
 > Support [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) only
+
+> [!IMPORTANT]
+> You need to use [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) to have suggestions and documentations like in the video.
 
 ## Installation
 
