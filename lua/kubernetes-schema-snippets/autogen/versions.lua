@@ -2,7 +2,6 @@ local ls = require("luasnip")
 local t = ls.text_node
 
 return {
-  t("kubernetes-json-schema/"),
   t("master"),
   t("master-local"),
   t("master-standalone"),
