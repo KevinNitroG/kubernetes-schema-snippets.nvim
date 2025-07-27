@@ -5,6 +5,8 @@ on:
     - cron: "30 10 */2 * *" # Follow after yannh/kubernetes-json-schema
 jobs:
   generate:
+    permissions:
+      contents: write
     name: Generate
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Fetch latest yannh/kubernetes-json-schema hash
-        run: git ls-remote https://github.com/yannh/kubernetes-json-schema.git refs/heads/master | cut -f1 > latest_hash.txt
+        run: git ls-remote https://github.com/yannh/kubernetes-json-schema.git refs/heads/master | cut -f1 | tee latest_hash.txt
 
       - name: Restore hash cache
         id: cache
