@@ -45,7 +45,7 @@ jobs:
 
           return {
           EOF
-              find ./kubernetes-json-schema/ -maxdepth 1 -type d ! -name '.*' ! -name 'schemas' -name 'kubernetes-json-schema' -printf '%f\n' | \
+              find ./kubernetes-json-schema/ -maxdepth 1 -type d ! -name '.*' ! -name 'schemas' ! -name 'kubernetes-json-schema' -printf '%f\n' | \
                 sort | \
                 sed 's/.*/  t("&"),/'
               echo '}'
