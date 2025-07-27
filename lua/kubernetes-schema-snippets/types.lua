@@ -1,0 +1,2 @@
+---@class KubernetesSchemaOpts
+---@field filetypes? string[]

@@ -1,0 +1,95 @@
+name: Generate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 10 */2 * *" # Follow after yannh/kubernetes-json-schema
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fetch latest yannh/kubernetes-json-schema hash
+        run: git ls-remote https://github.com/yannh/kubernetes-json-schema.git refs/heads/master | cut -f1 > latest_hash.txt
+
+      - name: Restore hash cache
+        id: cache-hash
+        uses: actions/cache@v4
+        with:
+          path: latest_hash.txt
+          key: latest-hash
+
+      - name: Checkout kubernetes-json-schema repo
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        uses: actions/checkout@v4
+        with:
+          repository: yannh/kubernetes-json-schema
+          path: kubernetes-json-schema
+          ref: master
+          fetch-depth: 1
+
+      - name: Generate versions
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        shell: bash
+        run: |
+          {
+              cat << 'EOF'
+          local ls = require("luasnip")
+          local t = ls.text_node
+
+          return {
+          EOF
+              find ./kubernetes-json-schema/ -maxdepth 1 -type d ! -name '.*' ! -name 'schemas' -printf '%f\n' | \
+                sort | \
+                sed 's/.*/  t("&"),/'
+              echo '}'
+          } > './lua/kubernetes-schema-snippets/autogen/versions.lua'
+
+      - name: Generate resources
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        shell: bash
+        run: |
+          {
+              cat << 'EOF'
+          local ls = require("luasnip")
+          local t = ls.text_node
+
+          return {
+          EOF
+              find ./kubernetes-json-schema/master -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' | \
+                sed 's/\.json$//' | \
+                sort | \
+                sed 's/.*/  t("&"),/'
+              echo '}'
+          } > './lua/kubernetes-schema-snippets/autogen/resources.lua'
+
+      - uses: JohnnyMorganz/stylua-action@v4
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: "false"
+
+      - name: Format auto generated files
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        shell: bash
+        run: |
+          stylua ./lua/kubernetes-schema-snippets/autogen/*
+
+      - uses: EndBug/add-and-commit@v9
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        with:
+          add: lua/kubernetes-schema-snippets/autogen
+          message: "feat(autogen): update versions and resources"
+          committer_name: GitHub Actions
+          committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Save hash to cache
+        if: ${{ steps.cache-hash.outputs.cache-hit == 'false' }}
+        uses: actions/cache@v4
+        with:
+          path: latest_hash.txt
+          key: latest-hash
