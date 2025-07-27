@@ -30,9 +30,9 @@ Default opts:
 ---@module 'kubernetes-json-schema'
 ---@type KubernetesSchemaOpts
 {
-	filetypes = {
-		"yaml",
-	},
+  filetypes = {
+    "yaml",
+  },
 }
 ```
 
