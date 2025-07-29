@@ -52,7 +52,7 @@ return {
   --   },
   --   fmt(
   --     [[
-  --   # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1applicationset.json
+  --   # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone/v1alpha1applicationset.json
   --   apiVersion: argoproj.io/v1alpha1
   --   kind: ApplicationSet
   --   ]],
@@ -70,7 +70,7 @@ return {
   --   },
   --   fmt(
   --     [[
-  --   # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1application.json
+  --   # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone/v1alpha1application.json
   --   apiVersion: argoproj.io/v1alpha1
   --   kind: Application
   --   ]],
