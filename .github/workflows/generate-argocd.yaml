@@ -54,12 +54,14 @@ jobs:
           local i = ls.insert_node
 
           return {
-            i(nil, "version"),
           EOF
               find ./argocd-json-schema/schemas/ -maxdepth 1 -type d ! -name 'schemas' -printf '%f\n' |
                   sort |
                   sed 's/.*/  t("&"),/'
-              echo '}'
+              cat << 'EOF'
+            i(nil, "version"),
+          }
+          EOF
           } > '${{ env.OUTPUT }}/versions.lua'
 
       - name: Generate types
@@ -73,12 +75,14 @@ jobs:
           local i = ls.insert_node
 
           return {
-            i(nil, "type"),
           EOF
               find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d ! -name 'master' -printf '%f\n' |
                   sort |
                   sed 's/.*/  t("&"),/'
-              echo '}'
+              cat << 'EOF'
+            i(nil, "type"),
+          }
+          EOF
           } > '${{ env.OUTPUT }}/types.lua'
 
       - name: Generate resources
