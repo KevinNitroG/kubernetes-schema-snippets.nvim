@@ -5,7 +5,6 @@ local i = ls.insert_node
 return {
   i(nil, "version"),
   t("master"),
-  t("schemas/"),
   t("stable"),
   t("v2.3.1"),
   t("v2.3.10"),
