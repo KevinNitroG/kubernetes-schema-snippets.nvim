@@ -62,7 +62,7 @@ Add inline schema references for **Kubernetes** and **ArgoCD** for YAML file usi
 
 - Type snippet and expand
   - `kube-schema`
-  - `argocd-schema`
+  - `argocd-schema`, `argocd-app-schema`, `argocd-appset-schema`
 - Choose version, type, resources by iterating versions either using:
   - Enter yourself
   - Next:

@@ -20,4 +20,40 @@ return {
       c(3, resources),
     })
   ),
+
+  s(
+    {
+      name = "ArgoCD Application Schema",
+      trig = "argocd-appset-schema",
+      desc = "ArgoCD Application Set Schema from KevinNitroG/argocd-json-schema",
+    },
+    fmt(
+      [[
+    # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1applicationset.json
+    apiVersion: argoproj.io/v1alpha1
+    kind: ApplicationSet
+    ]],
+      {
+        c(1, versions),
+      }
+    )
+  ),
+
+  s(
+    {
+      name = "ArgoCD Application Schema",
+      trig = "argocd-app-schema",
+      desc = "ArgoCD Application Schema from KevinNitroG/argocd-json-schema",
+    },
+    fmt(
+      [[
+    # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1application.json
+    apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    ]],
+      {
+        c(1, versions),
+      }
+    )
+  ),
 }
