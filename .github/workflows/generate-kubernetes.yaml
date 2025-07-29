@@ -1,14 +1,18 @@
-name: Generate
+name: Generate Kubernetes
 on:
   workflow_dispatch:
   schedule:
     - cron: "30 10 */2 * *" # Follow after yannh/kubernetes-json-schema
+env:
+  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/kubernetes
 jobs:
   generate:
     permissions:
       contents: write
     name: Generate
     runs-on: ubuntu-latest
+    concurrency:
+      group: generate
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,7 +27,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: latest_hash.txt
-          key: latest-hash
+          key: kubernetes-hash
 
       - name: Checkout kubernetes-json-schema repo
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
@@ -34,6 +38,9 @@ jobs:
           ref: master
           fetch-depth: 1
 
+      - name: Make dir
+        run: mkdir -p ${{ env.OUTPUT }}
+
       - name: Generate versions
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
@@ -42,14 +49,16 @@ jobs:
               cat << 'EOF'
           local ls = require("luasnip")
           local t = ls.text_node
+          local i = ls.insert_node
 
           return {
+            i(nil, "version"),
           EOF
-              find ./kubernetes-json-schema/ -maxdepth 1 -type d ! -name '.*' ! -name 'schemas' ! -name 'kubernetes-json-schema' -printf '%f\n' | \
-                sort | \
-                sed 's/.*/  t("&"),/'
+              find ./kubernetes-json-schema/ -maxdepth 1 -type d ! -name '.*' ! -name 'schemas' ! -name 'kubernetes-json-schema' -printf '%f\n' |
+                  sort |
+                  sed 's/.*/  t("&"),/'
               echo '}'
-          } > './lua/kubernetes-schema-snippets/autogen/versions.lua'
+          } > '${{ env.OUTPUT }}/versions.lua'
 
       - name: Generate resources
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
@@ -59,15 +68,17 @@ jobs:
               cat << 'EOF'
           local ls = require("luasnip")
           local t = ls.text_node
+          local i = ls.insert_node
 
           return {
+            i(nil, "resource"),
           EOF
-              find ./kubernetes-json-schema/master -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' | \
-                sed 's/\.json$//' | \
-                sort | \
-                sed 's/.*/  t("&"),/'
+              find ./kubernetes-json-schema/master -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+                  sed 's/\.json$//' |
+                  sort |
+                  sed 's/.*/  t("&"),/'
               echo '}'
-          } > './lua/kubernetes-schema-snippets/autogen/resources.lua'
+          } > '${{ env.OUTPUT }}/resources.lua'
 
       - uses: JohnnyMorganz/stylua-action@v4
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
@@ -80,12 +91,12 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          stylua ./lua/kubernetes-schema-snippets/autogen/*
+          stylua ${{ env.OUTPUT }}/*
 
       - uses: EndBug/add-and-commit@v9
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         with:
-          add: lua/kubernetes-schema-snippets/autogen
-          message: "feat(autogen): update versions and resources"
+          add: ${{ env.OUTPUT }}/
+          message: "feat(autogen): update kubernetes"
           committer_name: GitHub Actions
           committer_email: 41898282+github-actions[bot]@users.noreply.github.com

@@ -1,6 +1,6 @@
 # Kubernetes Schema Snippets
 
-Add inline schema references from [yannh/kubernetes-json-schema](https://github.com/yannh/kubernetes-json-schema) for YAML file using snippet.
+Add inline schema references for **Kubernetes** and **ArgoCD** for YAML file using snippet.
 
 [![asciicast](https://asciinema.org/a/730130.svg)](https://asciinema.org/a/730130)
 
@@ -8,9 +8,29 @@ Add inline schema references from [yannh/kubernetes-json-schema](https://github.
 > Support [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) only
 
 > [!IMPORTANT]
-> You need to use [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) to have suggestions and documentations like in the video.
+> You will need to use [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) to have suggestions and documentations like in the video.
 
-## Installation
+---
+
+## ToC
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Usage](#usage)
+  - [Installation](#installation)
+  - [Default options](#default-options)
+  - [Use](#use)
+- [Others](#others)
+  - [Acknowledgements](#acknowledgements)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+---
+
+## Usage
+
+### Installation
 
 ```lua
 -- lazy.nvim
@@ -22,24 +42,29 @@ Add inline schema references from [yannh/kubernetes-json-schema](https://github.
 }
 ```
 
-## Configuration
-
-Default opts:
+### Default options
 
 ```lua
 ---@module 'kubernetes-json-schema'
----@type KubernetesSchemaOpts
+---@type KubernetesJsonSchema.Opts
 {
   filetypes = {
     "yaml",
   },
+  integrations = {
+    kubernetes = true,
+    argocd = true,
+  },
 }
 ```
 
-## Usage
+### Use
 
-- Type `kube-schema` and expand
-- Choose version by iterating versions either using:
+- Type snippet and expand
+  - `kube-schema`
+  - `argocd-schema`
+- Choose version, type, resources by iterating versions either using:
+  - Enter yourself
   - Next:
     ```vim
     <Plug>luasnip-next-choice
@@ -52,8 +77,18 @@ Default opts:
     ```lua
     require("luasnip.extras.select_choice")()
     ```
-- Snippet jump
-- Choose resource by iterating like choosing version
 
 > [!WARNING]
-> The resources extracted from [master](https://github.com/yannh/kubernetes-json-schema/tree/master/master). Choosing older versions might doesn't have latest resources as master.
+>
+> The resources extracted from latest of kubernetes, argocd. Choosing older versions might doesn't have latest resources.
+
+---
+
+## Others
+
+### Acknowledgements
+
+- <https://github.com/yannh/kubernetes-json-schema>
+- <https://github.com/KevinNitroG/argocd-json-schema>
+- <https://github.com/mrcjkb/haskell-snippets.nvim/>
+- <https://github.com/evesdropper/luasnip-latex-snippets.nvim>

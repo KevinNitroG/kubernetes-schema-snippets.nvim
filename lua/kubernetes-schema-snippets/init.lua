@@ -1,18 +1,27 @@
 local ls = require("luasnip")
 local M = {}
 
----@type KubernetesSchemaOpts
-local default_opts = {
+---@type KubernetesJsonSchema.Opts
+M.default_opts = {
   filetypes = {
     "yaml",
   },
+  integrations = {
+    kubernetes = true,
+    argocd = true,
+  },
 }
 
----@param opts KubernetesSchemaOpts?
+---@param opts KubernetesJsonSchema.Opts?
 function M.setup(opts)
-  opts = vim.tbl_deep_extend("force", default_opts, opts or {})
+  opts = vim.tbl_deep_extend("force", M.default_opts, opts or {})
   for _, ft in ipairs(opts.filetypes) do
-    ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets"))
+    if opts.integrations.kubernetes then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.kubernetes"))
+    end
+    if opts.integrations.argocd then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.argocd"))
+    end
   end
 end
 

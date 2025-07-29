@@ -1,0 +1,121 @@
+name: Generate ArgoCD
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 0 * * 1"
+env:
+  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/argocd
+jobs:
+  generate:
+    permissions:
+      contents: write
+    name: Generate
+    runs-on: ubuntu-latest
+    concurrency:
+      group: generate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fetch latest KevinNitroG/argocd-json-schema hash
+        run: git ls-remote https://github.com/KevinNitroG/argocd-json-schema.git refs/heads/master | cut -f1 | tee latest_hash.txt
+
+      - name: Restore hash cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: latest_hash.txt
+          key: argocd-cache
+
+      - name: Checkout kubernetes-json-schema repo
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/checkout@v4
+        with:
+          repository: KevinNitroG/argocd-json-schema
+          path: argocd-json-schema
+          ref: main
+          fetch-depth: 1
+
+      - name: Make dir
+        run: mkdir -p ${{ env.OUTPUT }}
+
+      - name: Generate versions
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          {
+              cat << 'EOF'
+          local ls = require("luasnip")
+          local t = ls.text_node
+          local i = ls.insert_node
+
+          return {
+            i(nil, "version"),
+          EOF
+              find ./argocd-json-schema/schemas/ -maxdepth 1 -type d -printf '%f\n' |
+                  sort |
+                  sed 's/.*/  t("&"),/'
+              echo '}'
+          } > '${{ env.OUTPUT }}/versions.lua'
+
+      - name: Generate types
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          {
+              cat << 'EOF'
+          local ls = require("luasnip")
+          local t = ls.text_node
+          local i = ls.insert_node
+
+          return {
+            i(nil, "type"),
+          EOF
+              find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d -printf '%f\n' |
+                  sort |
+                  sed 's/.*/  t("&"),/'
+              echo '}'
+          } > '${{ env.OUTPUT }}/types.lua'
+
+      - name: Generate resources
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          {
+              cat << 'EOF'
+          local ls = require("luasnip")
+          local t = ls.text_node
+          local i = ls.insert_node
+
+          return {
+            i(nil, "resource"),
+          EOF
+              find ./argocd-json-schema/schemas/master/standalone/ -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+                  sed 's/\.json$//' |
+                  sort |
+                  sed 's/.*/  t("&"),/'
+              echo '}'
+          } > '${{ env.OUTPUT }}/resources.lua'
+
+      - uses: JohnnyMorganz/stylua-action@v4
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: "false"
+
+      - name: Format auto generated files
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          stylua ${{ env.OUTPUT }}/*
+
+      - uses: EndBug/add-and-commit@v9
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        with:
+          add: ${{ env.OUTPUT }}/
+          message: "feat(autogen): update argocd"
+          committer_name: GitHub Actions
+          committer_email: 41898282+github-actions[bot]@users.noreply.github.com
