@@ -4,4 +4,5 @@
 
 ---@class KubernetesJsonSchema.Integrations
 ---@field kubernetes? boolean
+---@field kustomize? boolean
 ---@field argocd? boolean

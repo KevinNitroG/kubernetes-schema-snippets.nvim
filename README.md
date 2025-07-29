@@ -1,6 +1,6 @@
 # Kubernetes Schema Snippets
 
-Add inline schema references for **Kubernetes** and **ArgoCD** for YAML file using snippet.
+Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** for YAML file using snippet.
 
 [![asciicast](https://asciinema.org/a/730130.svg)](https://asciinema.org/a/730130)
 
@@ -62,7 +62,8 @@ Add inline schema references for **Kubernetes** and **ArgoCD** for YAML file usi
 
 - Type snippet and expand
   - `kube-schema`
-  - `argocd-schema`, `argocd-app-schema`, `argocd-appset-schema`
+  - `kustomize-schema`
+  - `argocd-schema`, `argocd-app`, `argocd-appset`
 - Choose version, type, resources by iterating versions either using:
   - Enter yourself
   - Next:

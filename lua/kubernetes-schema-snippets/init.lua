@@ -8,6 +8,7 @@ M.default_opts = {
   },
   integrations = {
     kubernetes = true,
+    kustomize = true,
     argocd = true,
   },
 }
@@ -18,6 +19,9 @@ function M.setup(opts)
   for _, ft in ipairs(opts.filetypes) do
     if opts.integrations.kubernetes then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.kubernetes"))
+    end
+    if opts.integrations.kustomize then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.kustomize"))
     end
     if opts.integrations.argocd then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.argocd"))

@@ -1,6 +1,7 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local c = ls.choice_node
+local t = ls.t
 local fmt = require("luasnip.extras.fmt").fmt
 
 local versions = require("kubernetes-schema-snippets.autogen.argocd.versions")
@@ -23,37 +24,59 @@ return {
 
   s(
     {
-      name = "ArgoCD Application Schema",
-      trig = "argocd-appset-schema",
-      desc = "ArgoCD Application Set Schema from KevinNitroG/argocd-json-schema",
+      name = "ArgoCD Application Snippet",
+      trig = "argocd-app",
     },
-    fmt(
-      [[
-    # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1applicationset.json
-    apiVersion: argoproj.io/v1alpha1
-    kind: ApplicationSet
-    ]],
-      {
-        c(1, versions),
-      }
-    )
+    t({
+      "apiVersion: argoproj.io/v1alpha1",
+      "kind: Application",
+    })
   ),
 
   s(
     {
-      name = "ArgoCD Application Schema",
-      trig = "argocd-app-schema",
-      desc = "ArgoCD Application Schema from KevinNitroG/argocd-json-schema",
+      name = "ArgoCD Application Set Snippet",
+      trig = "argocd-appset",
     },
-    fmt(
-      [[
-    # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1application.json
-    apiVersion: argoproj.io/v1alpha1
-    kind: Application
-    ]],
-      {
-        c(1, versions),
-      }
-    )
+    t({
+      "apiVersion: argoproj.io/v1alpha1",
+      "kind: ApplicationSet",
+    })
   ),
+
+  -- s(
+  --   {
+  --     name = "ArgoCD Application Set Schema",
+  --     trig = "argocd-appset-schema",
+  --     desc = "ArgoCD Application Set Schema from KevinNitroG/argocd-json-schema",
+  --   },
+  --   fmt(
+  --     [[
+  --   # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1applicationset.json
+  --   apiVersion: argoproj.io/v1alpha1
+  --   kind: ApplicationSet
+  --   ]],
+  --     {
+  --       c(1, versions),
+  --     }
+  --   )
+  -- ),
+  --
+  -- s(
+  --   {
+  --     name = "ArgoCD Application Schema",
+  --     trig = "argocd-app-schema",
+  --     desc = "ArgoCD Application Schema from KevinNitroG/argocd-json-schema",
+  --   },
+  --   fmt(
+  --     [[
+  --   # yaml-language-server: $schema=https://raw.githubusercontent.com/KevinNitroG/argocd-json-schema/main/schemas/{}/standalone-strict/v1alpha1application.json
+  --   apiVersion: argoproj.io/v1alpha1
+  --   kind: Application
+  --   ]],
+  --     {
+  --       c(1, versions),
+  --     }
+  --   )
+  -- ),
 }
