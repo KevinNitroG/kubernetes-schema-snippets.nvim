@@ -21,6 +21,7 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
   - [Installation](#installation)
   - [Default options](#default-options)
   - [Use](#use)
+  - [LuaSnip keymaps](#luasnip-keymaps)
 - [Others](#others)
   - [Acknowledgements](#acknowledgements)
 
@@ -60,7 +61,7 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
 
 ### Use
 
-- Type snippet and expand
+- Snippets:
   - `kube-schema`
   - `kustomize-schema`
   - `argocd-schema`, `argocd-app`, `argocd-appset`
@@ -82,6 +83,53 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
 > [!WARNING]
 >
 > The resources extracted from latest of kubernetes, argocd. Choosing older versions might doesn't have latest resources.
+
+### LuaSnip keymaps
+
+Below is an example of my personal keymaps configuration for LuaSnip. You may use it as a reference for your own setup.
+
+```lua
+---@module 'lazy'
+---@type LazySpec
+return {
+  "L3MON4D3/LuaSnip",
+  keys = {
+    {
+      "<C-n>",
+      "<Plug>luasnip-next-choice",
+      silent = true,
+      mode = { "i", "s" },
+    },
+    {
+      "<C-p>",
+      "<Plug>luasnip-prev-choice",
+      silent = true,
+      mode = { "i", "s" },
+    },
+    {
+      "<M-e>",
+      function()
+        if require("luasnip").expand_or_jumpable() then
+          require("luasnip").expand_or_jump()
+        end
+      end,
+      silent = true,
+      mode = { "i", "s" },
+      noremap = true,
+    },
+    {
+      "<M-c>",
+      function()
+        if require("luasnip").choice_active() then
+          require("luasnip.extras.select_choice")()
+        end
+      end,
+      silent = true,
+      mode = { "i", "s" },
+    },
+  },
+}
+```
 
 ---
 
