@@ -17,6 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 1
 
       - name: Fetch latest KevinNitroG/argocd-json-schema hash
@@ -39,6 +40,7 @@ jobs:
           fetch-depth: 1
 
       - name: Make dir
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: mkdir -p ${{ env.OUTPUT }}
 
       - name: Generate versions
@@ -119,3 +121,4 @@ jobs:
           message: "feat(autogen): update argocd"
           committer_name: GitHub Actions
           committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+          pull: --rebase --autostash
