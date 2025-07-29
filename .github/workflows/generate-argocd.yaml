@@ -54,7 +54,7 @@ jobs:
           return {
             i(nil, "version"),
           EOF
-              find ./argocd-json-schema/schemas/ -maxdepth 1 -type d -printf '%f\n' |
+              find ./argocd-json-schema/schemas/ -maxdepth 1 -type d ! -name 'schemas' -printf '%f\n' |
                   sort |
                   sed 's/.*/  t("&"),/'
               echo '}'
@@ -73,7 +73,7 @@ jobs:
           return {
             i(nil, "type"),
           EOF
-              find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d -printf '%f\n' |
+              find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d ! -name 'master' -printf '%f\n' |
                   sort |
                   sed 's/.*/  t("&"),/'
               echo '}'
