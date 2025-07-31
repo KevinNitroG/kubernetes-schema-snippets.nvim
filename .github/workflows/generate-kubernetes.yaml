@@ -49,17 +49,17 @@ jobs:
         shell: bash
         run: |
           find ./kubernetes-json-schema/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'schemas' -printf '%f\n' |
-            sort |
-            ./scripts/transform-fields-to-lua.sh -f 'version' > '${{ env.OUTPUT }}/versions.lua'
+          	sort |
+          	./.scripts/transform-fields-to-lua.sh -f 'version' >'${{ env.OUTPUT }}/versions.lua'
 
       - name: Generate resources
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
           find ./kubernetes-json-schema/master -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
-            sed 's/\.json$//' |
-            sort |
-            ./scripts/transform-fields-to-lua.sh -f 'resource' > '${{ env.OUTPUT }}/resources.lua'
+          	sed 's/\.json$//' |
+          	sort |
+          	./.scripts/transform-fields-to-lua.sh -f 'resource' >'${{ env.OUTPUT }}/resources.lua'
 
       - uses: JohnnyMorganz/stylua-action@v4
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}

@@ -51,7 +51,7 @@ jobs:
         run: |
           api_groups=$(find ./crds-catalog/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
           echo "api_groups=${api_groups}" >>"$GITHUB_OUTPUT"
-          ./scripts/transform-fields-to-lua.sh -f 'api group' >'${{ env.OUTPUT }}/api_groups.lua'
+          ./.scripts/transform-fields-to-lua.sh -f 'api group' >'${{ env.OUTPUT }}/api_groups.lua'
 
       - name: Make dir for apigroups
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
@@ -71,7 +71,7 @@ jobs:
             find ./crds-catalog/$group/ -type f -printf '%f\n' |
               sed 's/\.json$//' |
               sort |
-              ./scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"
+              ./.scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"
           done
 
       - uses: JohnnyMorganz/stylua-action@v4
