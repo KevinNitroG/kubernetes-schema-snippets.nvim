@@ -47,65 +47,26 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          {
-              cat << 'EOF'
-          local ls = require("luasnip")
-          local t = ls.text_node
-          local i = ls.insert_node
-
-          return {
-          EOF
-              find ./argocd-json-schema/schemas/ -maxdepth 1 -type d ! -name 'schemas' -printf '%f\n' |
-                  sort |
-                  sed 's/.*/  t("&"),/'
-              cat << 'EOF'
-            i(nil, "version"),
-          }
-          EOF
-          } > '${{ env.OUTPUT }}/versions.lua'
+          find ./argocd-json-schema/schemas/ -maxdepth 1 -type d ! -name 'schemas' -printf '%f\n' |
+            sort |
+            ./scripts/transform-fields-to-lua.sh "version" > '${{ env.OUTPUT }}/versions.lua'
 
       - name: Generate types
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          {
-              cat << 'EOF'
-          local ls = require("luasnip")
-          local t = ls.text_node
-          local i = ls.insert_node
-
-          return {
-          EOF
-              find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d ! -name 'master' -printf '%f\n' |
-                  sort |
-                  sed 's/.*/  t("&"),/'
-              cat << 'EOF'
-            i(nil, "type"),
-          }
-          EOF
-          } > '${{ env.OUTPUT }}/types.lua'
+          find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d ! -name 'master' -printf '%f\n' |
+            sort |
+            ./scripts/transform-fields-to-lua.sh "type" > '${{ env.OUTPUT }}/types.lua'
 
       - name: Generate resources
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          {
-              cat << 'EOF'
-          local ls = require("luasnip")
-          local t = ls.text_node
-          local i = ls.insert_node
-
-          return {
-          EOF
-              find ./argocd-json-schema/schemas/master/standalone/ -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
-                  sed 's/\.json$//' |
-                  sort |
-                  sed 's/.*/  t("&"),/'
-              cat << 'EOF'
-            i(nil, "resource"),
-          }
-          EOF
-          } > '${{ env.OUTPUT }}/resources.lua'
+          find ./argocd-json-schema/schemas/master/standalone/ -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+            sed 's/\.json$//' |
+            sort |
+            ./scripts/transform-fields-to-lua.sh "resource" > '${{ env.OUTPUT }}/resources.lua'
 
       - uses: JohnnyMorganz/stylua-action@v4
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
