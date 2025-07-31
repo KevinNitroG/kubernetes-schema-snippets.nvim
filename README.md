@@ -2,8 +2,11 @@
 
 Add inline schema references for Kubernetes resources and CRDs in YAML using snippets
 
-![kube-snip-v2](https://github.com/user-attachments/assets/7dceae16-ea98-43f2-986e-37685cf03f2e)
-> Source of video: <https://asciinema.org/a/730906>
+[![asciicast](https://asciinema.org/a/730906.svg)](https://asciinema.org/a/730906)
+
+<!-- ![kube-snip-v2](https://github.com/user-attachments/assets/7dceae16-ea98-43f2-986e-37685cf03f2e) -->
+<!---->
+<!-- > Source of video: <https://asciinema.org/a/730906> -->
 
 > [!NOTE]
 > Support [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) only
