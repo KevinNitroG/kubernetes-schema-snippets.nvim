@@ -89,7 +89,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          stylua "$(find ${{ env.OUTPUT }}/ -type f -name '*.lua')"
+          find ${{ env.OUTPUT }}/ -type f -name '*.lua' -print0 | xargs -0 stylua
 
       - uses: EndBug/add-and-commit@v9
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
