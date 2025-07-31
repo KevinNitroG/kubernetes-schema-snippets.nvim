@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: |
           api_groups=$(find ./crds-catalog/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
-          echo "api_groups=${api_groups}" >>"$GITHUB_OUTPUT"
+          echo "api_groups=${api_groups[*]}" >>"$GITHUB_OUTPUT"
           ./.scripts/transform-fields-to-lua.sh -f 'api group' >'${{ env.OUTPUT }}/api_groups.lua'
 
       - name: Make dir for apigroups
@@ -67,7 +67,7 @@ jobs:
         shell: bash
         run: |
           for group in ${{ steps.api-groups.outputs.api_groups }}; do
-            finalise_name=$(echo $group | sed 's/\./_/g')
+            finalise_name="${group//./_}"
             find ./crds-catalog/$group/ -type f -printf '%f\n' |
               sed 's/\.json$//' |
               sort |
