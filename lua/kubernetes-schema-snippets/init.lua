@@ -17,17 +17,18 @@ M.default_opts = {
 ---@param opts KubernetesJsonSchema.Opts?
 function M.setup(opts)
   opts = vim.tbl_deep_extend("force", M.default_opts, opts or {})
+  local integrations = opts.integrations ---@cast integrations KubernetesJsonSchema.Integrations
   for _, ft in ipairs(opts.filetypes) do
-    if opts.integrations.kubernetes then
+    if integrations.kubernetes then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.kubernetes"))
     end
-    if opts.integrations.kustomize then
+    if integrations.kustomize then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.kustomize"))
     end
-    if opts.integrations.argocd then
+    if integrations.argocd then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.argocd"))
     end
-    if opts.integrations.crds_catalog then
+    if integrations.crds_catalog then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.crds_catalog"))
     end
   end

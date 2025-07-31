@@ -1,8 +1,8 @@
----@class KubernetesJsonSchema.Opts
+---@class (exact) KubernetesJsonSchema.Opts
 ---@field filetypes? string[]
 ---@field integrations? KubernetesJsonSchema.Integrations
 
----@class KubernetesJsonSchema.Integrations
+---@class (exact) KubernetesJsonSchema.Integrations
 ---@field kubernetes? boolean
 ---@field kustomize? boolean
 ---@field argocd? boolean
