@@ -1,6 +1,6 @@
 # Kubernetes Schema Snippets
 
-Add inline schema references for Kubernetes resources and CRDs in YAML using snippets
+Add inline schema references for Kubernetes resources and CRDs using snippets
 
 <!-- [![asciicast](https://asciinema.org/a/730906.svg)](https://asciinema.org/a/730906) -->
 
@@ -90,11 +90,11 @@ Add inline schema references for Kubernetes resources and CRDs in YAML using sni
 
 > [!WARNING]
 >
-> The resources extracted from latest of kubernetes, argocd are from the master version. Choosing older versions might doesn't have latest resources.
+> The resources of Kubernetes, argocd are from the master version. Choosing older versions might not have the resources of the latest one.
 
 ### LuaSnip keymaps
 
-Below is an example of my personal keymaps configuration for LuaSnip. You may use it as a reference for your own setup.
+Below is an example of my personal keymaps configuration for LuaSnip. You may use it as a reference for your setup.
 
 ```lua
 ---@module 'lazy'
