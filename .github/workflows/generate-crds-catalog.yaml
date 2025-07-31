@@ -45,20 +45,23 @@ jobs:
         run: mkdir -p ${{ env.OUTPUT }}
 
       - name: Generate api groups
-        id: api-groups
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
           api_groups=$(find ./crds-catalog/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
-          echo "api_groups=${api_groups[*]}" >>"$GITHUB_OUTPUT"
+          {
+          	echo 'API_GROUPS<<EOF'
+          	echo $api_groups
+          	echo 'EOF'
+          } >>"$GITHUB_ENV"
           ./.scripts/transform-fields-to-lua.sh -f 'api group' >'${{ env.OUTPUT }}/api_groups.lua'
 
       - name: Make dir for apigroups
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          mkdir ${{ env.OUTPUT }}/resources
-          for group in ${{ steps.api-groups.outputs.api_groups }}; do
+          mkdir '${{ env.OUTPUT }}/resources'
+          for group in "${API_GROUPS[@]}"; do
             mkdir "${{ env.OUTPUT }}/resources/${group}"
           done
 
@@ -66,9 +69,9 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          for group in ${{ steps.api-groups.outputs.api_groups }}; do
+          for group in "${API_GROUPS[@]}"; do
             finalise_name="${group//./_}"
-            find ./crds-catalog/$group/ -type f -printf '%f\n' |
+            find "./crds-catalog/${group}/" -type f -printf '%f\n' |
               sed 's/\.json$//' |
               sort |
               ./.scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"
