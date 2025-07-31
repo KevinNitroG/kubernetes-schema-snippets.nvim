@@ -55,7 +55,7 @@ jobs:
           	echo $api_groups
           	echo 'EOF'
           } >>"$GITHUB_ENV"
-          echo $api_groups | ./.scripts/transform-fields-to-lua.sh -f 'api_group' >'${{ env.OUTPUT }}/api_groups.lua'
+          echo "$api_groups" | ./.scripts/transform-fields-to-lua.sh -f 'api_group' >'${{ env.OUTPUT }}/api_groups.lua'
 
       - name: Make dir for apigroups
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
