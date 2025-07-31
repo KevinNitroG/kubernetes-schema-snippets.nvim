@@ -75,13 +75,15 @@ jobs:
           local i = ls.insert_node
 
           return {
-            i(nil, "resource"),
           EOF
               find ./kubernetes-json-schema/master -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
                   sed 's/\.json$//' |
                   sort |
                   sed 's/.*/  t("&"),/'
-              echo '}'
+              cat << 'EOF'
+            i(nil, "resource"),
+          }
+          EOF
           } > '${{ env.OUTPUT }}/resources.lua'
 
       - uses: JohnnyMorganz/stylua-action@v4

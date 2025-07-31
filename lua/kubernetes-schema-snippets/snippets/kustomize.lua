@@ -6,7 +6,7 @@ return {
   s(
     {
       name = "Kusomize Schema",
-      trig = "kustomize-schema",
+      trig = "schema-kustomize",
     },
     t({
       "# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json",
