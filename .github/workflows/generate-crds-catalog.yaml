@@ -55,15 +55,15 @@ jobs:
           	echo $api_groups
           	echo 'EOF'
           } >>"$GITHUB_ENV"
-          echo $api_groups | ./.scripts/transform-fields-to-lua.sh -f 'api group' >'${{ env.OUTPUT }}/api_groups.lua'
+          echo $api_groups | ./.scripts/transform-fields-to-lua.sh -f 'api_group' >'${{ env.OUTPUT }}/api_groups.lua'
 
       - name: Make dir for apigroups
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          mkdir '${{ env.OUTPUT }}/resources'
+          mkdir -p '${{ env.OUTPUT }}/resources'
           for group in $API_GROUPS; do
-            mkdir "${{ env.OUTPUT }}/resources/${group}"
+            mkdir -p "${{ env.OUTPUT }}/resources/${group}"
           done
 
       - name: Generate resources

@@ -4,6 +4,6 @@ local i = ls.insert_node
 
 return function()
   return {
-    i(nil, "api group"),
+    i(nil, "api_group"),
   }
 end

@@ -22,7 +22,7 @@ return {
         local types = require("kubernetes-schema-snippets.autogen.argocd.types")()
         return sn(nil, { c(1, types) })
       end),
-      d(2, function()
+      d(3, function()
         local resources = require("kubernetes-schema-snippets.autogen.argocd.resources")()
         return sn(nil, { c(1, resources) })
       end),
