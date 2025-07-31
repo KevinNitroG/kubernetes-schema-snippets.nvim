@@ -48,6 +48,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
+          # shellcheck disable=SC2086
           api_groups=$(find ./crds-catalog/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
           {
           	echo 'API_GROUPS<<EOF'
@@ -61,7 +62,7 @@ jobs:
         shell: bash
         run: |
           mkdir '${{ env.OUTPUT }}/resources'
-          for group in "${API_GROUPS[@]}"; do
+          for group in $API_GROUPS; do
             mkdir "${{ env.OUTPUT }}/resources/${group}"
           done
 
@@ -69,7 +70,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          for group in "${API_GROUPS[@]}"; do
+          for group in $API_GROUPS; do
             finalise_name="${group//./_}"
             find "./crds-catalog/${group}/" -type f -printf '%f\n' |
               sed 's/\.json$//' |
