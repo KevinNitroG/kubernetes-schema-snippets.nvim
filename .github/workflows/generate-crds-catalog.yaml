@@ -1,11 +1,11 @@
-name: Generate Kubernetes
+name: Generate CRDs Catalog
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 10 */2 * *" # Follow after yannh/kubernetes-json-schema
+    - cron: "0 0 * * */1"
 env:
-  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/kubernetes
-  REPO: yannh/kubernetes-json-schema
+  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/crds_catalog
+  REPO: datreeio/CRDs-catalog
 jobs:
   generate:
     permissions:
@@ -29,37 +29,50 @@ jobs:
         uses: actions/cache@v4
         with:
           path: latest_hash.txt
-          key: kubernetes-hash
+          key: crds-catalog-cache
 
-      - name: Checkout ${{ env.REPO }} repo
+      - name: Checkout kubernetes-json-schema repo
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         uses: actions/checkout@v4
         with:
           repository: ${{ env.REPO }}
-          path: kubernetes-json-schema
-          ref: master
+          path: crds-catalog
+          ref: main
           fetch-depth: 1
 
       - name: Make dir
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: mkdir -p ${{ env.OUTPUT }}
 
-      - name: Generate versions
+      - name: Generate api groups
+        id: api-groups
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./kubernetes-json-schema/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'schemas' -printf '%f\n' |
-            sort |
-            ./scripts/transform-fields-to-lua.sh -f 'version' > '${{ env.OUTPUT }}/versions.lua'
+          api_groups=$(find ./crds-catalog/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
+          echo "api_groups=${api_groups}" >>"$GITHUB_OUTPUT"
+          ./scripts/transform-fields-to-lua.sh -f 'api group' >'${{ env.OUTPUT }}/api_groups.lua'
+
+      - name: Make dir for apigroups
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          mkdir ${{ env.OUTPUT }}/resources
+          for group in ${{ steps.api-groups.outputs.api_groups }}; do
+            mkdir "${{ env.OUTPUT }}/resources/${group}"
+          done
 
       - name: Generate resources
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./kubernetes-json-schema/master -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
-            sed 's/\.json$//' |
-            sort |
-            ./scripts/transform-fields-to-lua.sh -f 'resource' > '${{ env.OUTPUT }}/resources.lua'
+          for group in ${{ steps.api-groups.outputs.api_groups }}; do
+            finalise_name=$(echo $group | sed 's/\./_/g')
+            find ./crds-catalog/$group/ -type f -printf '%f\n' |
+              sed 's/\.json$//' |
+              sort |
+              ./scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"
+          done
 
       - uses: JohnnyMorganz/stylua-action@v4
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
@@ -72,13 +85,13 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          stylua ${{ env.OUTPUT }}/*
+          stylua "$(find ${{ env.OUTPUT }}/ -type f -name '*.lua')"
 
       - uses: EndBug/add-and-commit@v9
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         with:
           add: ${{ env.OUTPUT }}/
-          message: "feat(autogen): update kubernetes"
+          message: "feat(autogen): update crds catalog"
           committer_name: GitHub Actions
           committer_email: 41898282+github-actions[bot]@users.noreply.github.com
           pull: --rebase --autostash

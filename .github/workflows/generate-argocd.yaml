@@ -5,6 +5,7 @@ on:
     - cron: "30 0 * * 1"
 env:
   OUTPUT: ./lua/kubernetes-schema-snippets/autogen/argocd
+  REPO: KevinNitroG/argocd-json-schema
 jobs:
   generate:
     permissions:
@@ -20,8 +21,8 @@ jobs:
           ref: main
           fetch-depth: 1
 
-      - name: Fetch latest KevinNitroG/argocd-json-schema hash
-        run: git ls-remote https://github.com/KevinNitroG/argocd-json-schema.git refs/heads/master | cut -f1 | tee latest_hash.txt
+      - name: Fetch latest ${{ env.REPO }} hash
+        run: git ls-remote https://github.com/${{ env.REPO }}.git refs/heads/master | cut -f1 | tee latest_hash.txt
 
       - name: Restore hash cache
         id: cache
@@ -34,7 +35,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         uses: actions/checkout@v4
         with:
-          repository: KevinNitroG/argocd-json-schema
+          repository: ${{ env.REPO }}
           path: argocd-json-schema
           ref: main
           fetch-depth: 1
@@ -47,26 +48,26 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/ -maxdepth 1 -type d ! -name 'schemas' -printf '%f\n' |
+          find ./argocd-json-schema/schemas/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
             sort |
-            ./scripts/transform-fields-to-lua.sh "version" > '${{ env.OUTPUT }}/versions.lua'
+            ./scripts/transform-fields-to-lua.sh -f 'version' > '${{ env.OUTPUT }}/versions.lua'
 
       - name: Generate types
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/master/ -maxdepth 1 -type d ! -name 'master' -printf '%f\n' |
+          find ./argocd-json-schema/schemas/master/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
             sort |
-            ./scripts/transform-fields-to-lua.sh "type" > '${{ env.OUTPUT }}/types.lua'
+            ./scripts/transform-fields-to-lua.sh -f 'type' > '${{ env.OUTPUT }}/types.lua'
 
       - name: Generate resources
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/master/standalone/ -maxdepth 1 -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+          find ./argocd-json-schema/schemas/master/standalone/ -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
             sed 's/\.json$//' |
             sort |
-            ./scripts/transform-fields-to-lua.sh "resource" > '${{ env.OUTPUT }}/resources.lua'
+            ./scripts/transform-fields-to-lua.sh -f 'resource' > '${{ env.OUTPUT }}/resources.lua'
 
       - uses: JohnnyMorganz/stylua-action@v4
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}

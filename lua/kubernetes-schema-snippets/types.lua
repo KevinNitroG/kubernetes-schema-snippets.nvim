@@ -6,3 +6,4 @@
 ---@field kubernetes? boolean
 ---@field kustomize? boolean
 ---@field argocd? boolean
+---@field crds_catalog? boolean

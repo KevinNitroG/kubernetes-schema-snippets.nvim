@@ -10,6 +10,7 @@ M.default_opts = {
     kubernetes = true,
     kustomize = true,
     argocd = true,
+    crds_catalog = true,
   },
 }
 
@@ -25,6 +26,9 @@ function M.setup(opts)
     end
     if opts.integrations.argocd then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.argocd"))
+    end
+    if opts.integrations.crds_catalog then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.crds_catalog"))
     end
   end
 end
