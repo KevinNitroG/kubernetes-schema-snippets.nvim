@@ -1,6 +1,6 @@
 # Kubernetes Schema Snippets
 
-Add inline schema references for **Kubernetes**, **Kustomize**, **ArgoCD**, and much more for YAML file using snippet.
+Add inline schema references for Kubernetes resources and CRDs in YAML using snippets
 
 ![kube-snip-v2](https://github.com/user-attachments/assets/7dceae16-ea98-43f2-986e-37685cf03f2e)
 > Source of video: <https://asciinema.org/a/730906>
