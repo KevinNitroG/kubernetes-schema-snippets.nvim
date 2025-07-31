@@ -1,2 +1,5 @@
 kubernetes-json-schema/
+argocd-json-schema/
+crds-catalog/
+.repro/
 latest_hash.txt
