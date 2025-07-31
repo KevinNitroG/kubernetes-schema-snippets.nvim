@@ -22,9 +22,9 @@ return {
         local resource = args[1][1]:gsub("%.", "_")
         local ok, finalised_resource = pcall(require, string.format("kubernetes-schema-snippets.autogen.crds_catalog.resources.%s", resource))
         if not ok then
-          return i(1, "resource")
+          return sn(nil, i(1, "resource"))
         end
-        return sn(nil, { c(1, finalised_resource) })
+        return sn(nil, { c(1, finalised_resource()) })
       end, { 1 }),
     })
   ),

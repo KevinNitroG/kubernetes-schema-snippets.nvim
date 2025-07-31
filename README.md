@@ -1,6 +1,6 @@
 # Kubernetes Schema Snippets
 
-Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** for YAML file using snippet.
+Add inline schema references for **Kubernetes**, **Kustomize**, **ArgoCD**, and much more for YAML file using snippet.
 
 [![asciicast](https://asciinema.org/a/730130.svg)](https://asciinema.org/a/730130)
 
@@ -23,6 +23,7 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
   - [Use](#use)
   - [LuaSnip keymaps](#luasnip-keymaps)
 - [Others](#others)
+  - [Resources](#resources)
   - [Acknowledgements](#acknowledgements)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -54,7 +55,9 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
   },
   integrations = {
     kubernetes = true,
+    kustomize = true,
     argocd = true,
+    crds_catalog = true,
   },
 }
 ```
@@ -62,11 +65,11 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
 ### Use
 
 - Snippets:
-  - `kube-schema`
-  - `kustomize-schema`
-  - `argocd-schema`, `argocd-app`, `argocd-appset`
+  - `schema-kube`
+  - `schema-kustomize`, `kus`
+  - `schema-argocd`, `argocd-app`, `argocd-appset`
+  - `schema-crds-catalog`
 - Choose version, type, resources by iterating versions either using:
-  - Enter yourself
   - Next:
     ```vim
     <Plug>luasnip-next-choice
@@ -79,10 +82,11 @@ Add inline schema references for **Kubernetes**, **Kustomize** and **ArgoCD** fo
     ```lua
     require("luasnip.extras.select_choice")()
     ```
+  - Enter yourself by going to the last choice and type string
 
 > [!WARNING]
 >
-> The resources extracted from latest of kubernetes, argocd. Choosing older versions might doesn't have latest resources.
+> The resources extracted from latest of kubernetes, argocd are from the master version. Choosing older versions might doesn't have latest resources.
 
 ### LuaSnip keymaps
 
@@ -135,9 +139,13 @@ return {
 
 ## Others
 
-### Acknowledgements
+### Resources
 
 - <https://github.com/yannh/kubernetes-json-schema>
 - <https://github.com/KevinNitroG/argocd-json-schema>
+- <https://github.com/datreeio/CRDs-catalog>
+
+### Acknowledgements
+
 - <https://github.com/mrcjkb/haskell-snippets.nvim/>
 - <https://github.com/evesdropper/luasnip-latex-snippets.nvim>
