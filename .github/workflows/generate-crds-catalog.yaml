@@ -6,6 +6,8 @@ on:
 env:
   OUTPUT: ./lua/kubernetes-schema-snippets/autogen/crds_catalog
   REPO: datreeio/CRDs-catalog
+  HEAD: main
+  CLONE_PATH: crds-catalog
 jobs:
   generate:
     permissions:
@@ -22,7 +24,7 @@ jobs:
           fetch-depth: 1
 
       - name: Fetch latest ${{ env.REPO }} hash
-        run: git ls-remote https://github.com/${{ env.REPO }}.git refs/heads/master | cut -f1 | tee latest_hash.txt
+        run: git ls-remote 'https://github.com/${{ env.REPO }}.git refs/heads/${{ env.HEAD }}' | cut -f1 | tee latest_hash.txt
 
       - name: Restore hash cache
         id: cache
@@ -36,8 +38,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.REPO }}
-          path: crds-catalog
-          ref: main
+          path: ${{ env.CLONE_PATH }}
+          ref: ${{ env.HEAD }}
           fetch-depth: 1
 
       - name: Make dir
@@ -49,7 +51,7 @@ jobs:
         shell: bash
         run: |
           # shellcheck disable=SC2086
-          api_groups=$(find ./crds-catalog/ -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
+          api_groups=$(find './${{ env.CLONE_PATH }}/' -maxdepth 1 -mindepth 1 -type d ! -name '.*' ! -name 'Utilities' -printf '%f\n' | sort)
           {
           	echo 'API_GROUPS<<EOF'
           	echo $api_groups
@@ -72,7 +74,7 @@ jobs:
         run: |
           for group in $API_GROUPS; do
             finalise_name="${group//./_}"
-            find "./crds-catalog/${group}/" -type f -printf '%f\n' |
+            find "./${{ env.CLONE_PATH }}/${group}/" -type f -printf '%f\n' |
               sed 's/\.json$//' |
               sort |
               ./.scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"

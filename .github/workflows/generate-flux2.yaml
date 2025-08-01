@@ -6,6 +6,8 @@ on:
 env:
   OUTPUT: ./lua/kubernetes-schema-snippets/autogen/flux2
   REPO: fluxcd-community/flux2-schemas
+  HEAD: main
+  CLONE_PATH: flux2-schemas
 jobs:
   generate:
     permissions:
@@ -22,7 +24,7 @@ jobs:
           fetch-depth: 1
 
       - name: Fetch latest ${{ env.REPO }} hash
-        run: git ls-remote https://github.com/${{ env.REPO }}.git refs/heads/master | cut -f1 | tee latest_hash.txt
+        run: git ls-remote 'https://github.com/${{ env.REPO }}.git refs/heads/${{ env.HEAD }}' | cut -f1 | tee latest_hash.txt
 
       - name: Restore hash cache
         id: cache
@@ -36,8 +38,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.REPO }}
-          path: flux2-schemas
-          ref: main
+          path: ${{ env.CLONE_PATH }}
+          ref: ${{ env.HEAD }}
           fetch-depth: 1
 
       - name: Make dir
@@ -48,7 +50,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./flux2-schemas/ -maxdepth 1 -mindepth 1 -type f -name '.*.json' ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+          find './${{ env.CLONE_PATH }}/' -maxdepth 1 -mindepth 1 -type f -name '.*.json' ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'resource' >'${{ env.OUTPUT }}/resources.lua'
 

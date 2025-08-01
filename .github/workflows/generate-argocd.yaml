@@ -6,6 +6,8 @@ on:
 env:
   OUTPUT: ./lua/kubernetes-schema-snippets/autogen/argocd
   REPO: KevinNitroG/argocd-json-schema
+  HEAD: main
+  CLONE_PATH: argocd-json-schema
 jobs:
   generate:
     permissions:
@@ -22,7 +24,7 @@ jobs:
           fetch-depth: 1
 
       - name: Fetch latest ${{ env.REPO }} hash
-        run: git ls-remote https://github.com/${{ env.REPO }}.git refs/heads/master | cut -f1 | tee latest_hash.txt
+        run: git ls-remote 'https://github.com/${{ env.REPO }}.git refs/heads/${{ env.HEAD }}' | cut -f1 | tee latest_hash.txt
 
       - name: Restore hash cache
         id: cache
@@ -36,8 +38,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.REPO }}
-          path: argocd-json-schema
-          ref: main
+          path: ${{ env.CLONE_PATH }}
+          ref: ${{ env.HEAD }}
           fetch-depth: 1
 
       - name: Make dir
@@ -48,7 +50,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
+          find '${{ env.CLONE_PATH }}/schemas/' -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'version' >'${{ env.OUTPUT }}/versions.lua'
 
@@ -56,7 +58,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/master/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
+          find '${{ env.CLONE_PATH }}/schemas/master/' -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'type' >'${{ env.OUTPUT }}/types.lua'
 
@@ -64,7 +66,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/master/standalone/ -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+          find '${{ env.CLONE_PATH }}/schemas/master/standalone/' -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
           	sed 's/\.json$//' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'resource' >'${{ env.OUTPUT }}/resources.lua'
