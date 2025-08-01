@@ -1,11 +1,11 @@
-name: Generate ArgoCD
+name: Generate Flux2
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 0 * * 1"
+    - cron: "0 0 * * 1"
 env:
-  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/argocd
-  REPO: KevinNitroG/argocd-json-schema
+  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/flux2
+  REPO: fluxcd-community/flux2-schemas
 jobs:
   generate:
     permissions:
@@ -29,14 +29,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: latest_hash.txt
-          key: argocd-cache
+          key: flux2-cache
 
       - name: Checkout ${{ env.REPO }} repo
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         uses: actions/checkout@v4
         with:
           repository: ${{ env.REPO }}
-          path: argocd-json-schema
+          path: flux2-schemas
           ref: main
           fetch-depth: 1
 
@@ -48,24 +48,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find ./argocd-json-schema/schemas/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
-          	sort |
-          	./.scripts/transform-fields-to-lua.sh -f 'version' >'${{ env.OUTPUT }}/versions.lua'
-
-      - name: Generate types
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        shell: bash
-        run: |
-          find ./argocd-json-schema/schemas/master/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' |
-          	sort |
-          	./.scripts/transform-fields-to-lua.sh -f 'type' >'${{ env.OUTPUT }}/types.lua'
-
-      - name: Generate resources
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        shell: bash
-        run: |
-          find ./argocd-json-schema/schemas/master/standalone/ -type f ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
-          	sed 's/\.json$//' |
+          find ./flux2-schemas/ -maxdepth 1 -mindepth 1 -type f -name '.*.json' ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'resource' >'${{ env.OUTPUT }}/resources.lua'
 
@@ -86,7 +69,7 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         with:
           add: ${{ env.OUTPUT }}/
-          message: "feat(autogen): update argocd"
+          message: "feat(autogen): update flux2"
           committer_name: GitHub Actions
           committer_email: 41898282+github-actions[bot]@users.noreply.github.com
           pull: --rebase --autostash

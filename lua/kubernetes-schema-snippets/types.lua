@@ -5,5 +5,6 @@
 ---@class (exact) KubernetesJsonSchema.Integrations
 ---@field kubernetes? boolean
 ---@field kustomize? boolean
----@field argocd? boolean
 ---@field crds_catalog? boolean
+---@field argocd? boolean
+---@field flux2? boolean

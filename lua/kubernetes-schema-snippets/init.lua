@@ -9,8 +9,9 @@ M.default_opts = {
   integrations = {
     kubernetes = true,
     kustomize = true,
-    argocd = true,
     crds_catalog = true,
+    argocd = false,
+    flux2 = false,
   },
 }
 
@@ -25,11 +26,14 @@ function M.setup(opts)
     if integrations.kustomize then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.kustomize"))
     end
+    if integrations.crds_catalog then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.crds_catalog"))
+    end
     if integrations.argocd then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.argocd"))
     end
-    if integrations.crds_catalog then
-      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.crds_catalog"))
+    if integrations.flux2 then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.flux2"))
     end
   end
 end

@@ -27,7 +27,7 @@ Add inline schema references for Kubernetes resources and CRDs using snippets
   - [Use](#use)
   - [LuaSnip keymaps](#luasnip-keymaps)
 - [Others](#others)
-  - [Resources](#resources)
+  - [Resources' Sources](#resources-sources)
   - [Acknowledgements](#acknowledgements)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -60,8 +60,9 @@ Add inline schema references for Kubernetes resources and CRDs using snippets
   integrations = {
     kubernetes = true,
     kustomize = true,
-    argocd = true,
     crds_catalog = true,
+    argocd = false,
+    flux2 = false,
   },
 }
 ```
@@ -71,8 +72,9 @@ Add inline schema references for Kubernetes resources and CRDs using snippets
 - Snippets:
   - `schema-kube`
   - `schema-kustomize`, `kus`
-  - `schema-argocd`, `argocd-app`, `argocd-appset`
   - `schema-crds-catalog`
+  - `schema-argocd`, `argocd-app`, `argocd-appset`
+  - `schema-flux2`
 - Choose version, type, resources by iterating versions either using:
   - Next:
     ```vim
@@ -143,11 +145,12 @@ return {
 
 ## Others
 
-### Resources
+### Resources' Sources
 
 - <https://github.com/yannh/kubernetes-json-schema>
-- <https://github.com/KevinNitroG/argocd-json-schema>
 - <https://github.com/datreeio/CRDs-catalog>
+- <https://github.com/KevinNitroG/argocd-json-schema>
+- <https://github.com/fluxcd-community/flux2-schemas>
 
 ### Acknowledgements
 
