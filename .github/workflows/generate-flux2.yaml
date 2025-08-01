@@ -51,6 +51,7 @@ jobs:
         shell: bash
         run: |
           find './${{ env.CLONE_PATH }}/' -maxdepth 1 -mindepth 1 -type f -name '*.json' ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+          	sed 's/\.json$//' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'resource' >'${{ env.OUTPUT }}/resources.lua'
 
