@@ -10,8 +10,8 @@ M.default_opts = {
     kubernetes = true,
     kustomize = true,
     crds_catalog = true,
-    argocd = false,
-    flux2 = false,
+    argocd = true,
+    flux2 = true,
   },
 }
 
