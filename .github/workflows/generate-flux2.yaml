@@ -46,11 +46,11 @@ jobs:
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: mkdir -p ${{ env.OUTPUT }}
 
-      - name: Generate versions
+      - name: Generate resources
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         shell: bash
         run: |
-          find './${{ env.CLONE_PATH }}/' -maxdepth 1 -mindepth 1 -type f -name '.*.json' ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
+          find './${{ env.CLONE_PATH }}/' -maxdepth 1 -mindepth 1 -type f -name '*.json' ! -name '_definitions.json' ! -name 'all.json' -printf '%f\n' |
           	sort |
           	./.scripts/transform-fields-to-lua.sh -f 'resource' >'${{ env.OUTPUT }}/resources.lua'
 
