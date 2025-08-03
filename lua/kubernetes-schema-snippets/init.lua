@@ -2,7 +2,7 @@ local ls = require("luasnip")
 local M = {}
 
 ---@type KubernetesJsonSchema.Opts
-M.default_opts = {
+local default_opts = {
   filetypes = {
     "yaml",
   },
@@ -17,7 +17,7 @@ M.default_opts = {
 
 ---@param opts KubernetesJsonSchema.Opts?
 function M.setup(opts)
-  opts = vim.tbl_deep_extend("force", M.default_opts, opts or {})
+  opts = vim.tbl_deep_extend("force", default_opts, opts or {})
   local integrations = opts.integrations ---@cast integrations KubernetesJsonSchema.Integrations
   for _, ft in ipairs(opts.filetypes) do
     if integrations.kubernetes then
