@@ -2,11 +2,11 @@
 
 Add inline schema references for Kubernetes resources and CRDs using snippets
 
-<!-- [![asciicast](https://asciinema.org/a/730906.svg)](https://asciinema.org/a/730906) -->
-
 ![kube-snip-v2](https://github.com/user-attachments/assets/7dceae16-ea98-43f2-986e-37685cf03f2e)
 
 > Source of video: <https://asciinema.org/a/730906>
+
+The differences from other plugins is that it doesn't patch, interfere the language server's settings, auto match base on file content. It just provide a fast way to add inline schema.
 
 > [!NOTE]
 > Support [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) only
@@ -28,6 +28,7 @@ Add inline schema references for Kubernetes resources and CRDs using snippets
   - [LuaSnip keymaps](#luasnip-keymaps)
 - [Others](#others)
   - [Resources' Sources](#resources-sources)
+  - [Related plugins](#related-plugins)
   - [Acknowledgements](#acknowledgements)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -151,6 +152,12 @@ return {
 - <https://github.com/datreeio/CRDs-catalog>
 - <https://github.com/KevinNitroG/argocd-json-schema>
 - <https://github.com/fluxcd-community/flux2-schemas>
+
+### Related plugins
+
+- <https://github.com/anasinnyk/nvim-k8s-crd>
+- <https://github.com/someone-stole-my-name/yaml-companion.nvim>
+- <https://github.com/msvechla/yaml-companion.nvim/tree/kubernetes_crd_detection>
 
 ### Acknowledgements
 
