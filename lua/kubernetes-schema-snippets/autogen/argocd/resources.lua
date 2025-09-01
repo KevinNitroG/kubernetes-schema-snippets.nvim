@@ -19,6 +19,7 @@ return function()
     t("applicationapplicationresourceresponse"),
     t("applicationapplicationresponse"),
     t("applicationapplicationrollbackrequest"),
+    t("applicationapplicationserversidediffresponse"),
     t("applicationapplicationsyncrequest"),
     t("applicationapplicationsyncwindow"),
     t("applicationapplicationsyncwindowsresponse"),
