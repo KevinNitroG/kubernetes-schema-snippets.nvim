@@ -4,9 +4,8 @@ local i = ls.insert_node
 
 return function()
   return {
-    t("k6_v1alpha1"),
-    t("privateloadzone_v1alpha1"),
-    t("testrun_v1alpha1"),
+    t("atlasmigration_v1alpha1"),
+    t("atlasschema_v1alpha1"),
     i(nil, "resource"),
   }
 end

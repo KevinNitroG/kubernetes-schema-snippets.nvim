@@ -168,6 +168,14 @@ return function()
     t("tinkerbellcluster_v1beta1"),
     t("tinkerbellmachine_v1beta1"),
     t("tinkerbellmachinetemplate_v1beta1"),
+    t("vspherecluster_v1beta1"),
+    t("vsphereclusteridentity_v1beta1"),
+    t("vsphereclustertemplate_v1beta1"),
+    t("vspheredeploymentzone_v1beta1"),
+    t("vspherefailuredomain_v1beta1"),
+    t("vspheremachine_v1beta1"),
+    t("vspheremachinetemplate_v1beta1"),
+    t("vspherevm_v1beta1"),
     i(nil, "resource"),
   }
 end

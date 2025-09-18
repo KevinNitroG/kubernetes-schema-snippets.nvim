@@ -4,9 +4,9 @@ local i = ls.insert_node
 
 return function()
   return {
-    t("k6_v1alpha1"),
-    t("privateloadzone_v1alpha1"),
-    t("testrun_v1alpha1"),
+    t("basicauth_v1alpha1"),
+    t("sshkeypair_v1alpha1"),
+    t("stringsecret_v1alpha1"),
     i(nil, "resource"),
   }
 end
