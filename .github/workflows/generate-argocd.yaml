@@ -2,7 +2,7 @@ name: Generate ArgoCD
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 0 * * 1"
+    - cron: "30 0 * * */1"
 env:
   OUTPUT: ./lua/kubernetes-schema-snippets/autogen/argocd
   REPO: KevinNitroG/argocd-json-schema
