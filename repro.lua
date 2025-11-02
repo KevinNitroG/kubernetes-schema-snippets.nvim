@@ -9,8 +9,8 @@ require("lazy.minit").repro({
   spec = {
     {
       "KevinNitroG/kubernetes-schema-snippets.nvim",
-      ---@module 'kubernetes-json-schema'
-      ---@type KubernetesJsonSchema.Opts
+      ---@module 'kubernetes-schema-snippets'
+      ---@type KubernetesSchemaSnippets.Opts
       opts = {
         filetypes = {
           "yaml",

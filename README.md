@@ -52,8 +52,8 @@ The differences from other plugins is that it doesn't patch, interfere the langu
 ### Default options
 
 ```lua
----@module 'kubernetes-json-schema'
----@type KubernetesJsonSchema.Opts
+---@module 'kubernetes-schema-snippets'
+---@type KubernetesSchemaSnippets.Opts
 {
   filetypes = {
     "yaml",
@@ -70,7 +70,7 @@ The differences from other plugins is that it doesn't patch, interfere the langu
 
 ### Use
 
-- Snippets:
+- Type snippet:
   - `schema-kube`
   - `schema-kustomize`, `kus`
   - `schema-crds-catalog`

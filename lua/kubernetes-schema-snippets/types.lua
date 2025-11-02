@@ -1,8 +1,8 @@
----@class (exact) KubernetesJsonSchema.Opts
+---@class (exact) KubernetesSchemaSnippets.Opts
 ---@field filetypes? string[]
----@field integrations? KubernetesJsonSchema.Integrations
+---@field integrations? KubernetesSchemaSnippets.Integrations
 
----@class (exact) KubernetesJsonSchema.Integrations
+---@class (exact) KubernetesSchemaSnippets.Integrations
 ---@field kubernetes? boolean
 ---@field kustomize? boolean
 ---@field crds_catalog? boolean
