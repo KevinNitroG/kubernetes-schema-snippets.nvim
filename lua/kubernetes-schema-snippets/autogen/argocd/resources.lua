@@ -140,6 +140,7 @@ return function()
     t("v1alpha1clustergenerator"),
     t("v1alpha1clusterinfo"),
     t("v1alpha1clusterlist"),
+    t("v1alpha1clusterresourcerestrictionitem"),
     t("v1alpha1command"),
     t("v1alpha1commitmetadata"),
     t("v1alpha1comparedto"),
