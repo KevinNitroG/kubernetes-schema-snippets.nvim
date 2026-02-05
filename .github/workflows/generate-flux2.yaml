@@ -24,14 +24,20 @@ jobs:
           fetch-depth: 1
 
       - name: Fetch latest ${{ env.REPO }} hash
-        run: git ls-remote 'https://github.com/${{ env.REPO }}.git' 'refs/heads/${{ env.HEAD }}' | cut -f1 | tee latest_hash.txt
+        id: get_hash
+        run: |
+          HASH=$(git ls-remote 'https://github.com/${{ env.REPO }}.git' 'refs/heads/${{ env.HEAD }}' | cut -f1)
+          echo "LATEST_HASH=${HASH}" >> "${GITHUB_OUTPUT}"
+          echo "${HASH}" > latest_hash.txt
 
       - name: Restore hash cache
         id: cache
         uses: actions/cache@v5
         with:
           path: latest_hash.txt
-          key: flux2-cache
+          key: flux2-${{ steps.get_hash.outputs.LATEST_HASH }}
+          restore-keys: |
+            flux2-
 
       - name: Checkout ${{ env.REPO }} repo
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
