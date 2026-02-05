@@ -3,9 +3,9 @@ local t = ls.text_node
 
 return function()
   return {
-    t(""),
-    t("-local"),
     t("-standalone"),
     t("-standalone-strict"),
+    t(""),
+    t("-local"),
   }
 end
