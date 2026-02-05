@@ -4,8 +4,12 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("workstation_v1alpha1"),
+    t("workstation_v1beta1"),
     t("workstationcluster_v1alpha1"),
     t("workstationcluster_v1beta1"),
+    t("workstationconfig_v1alpha1"),
+    t("workstationconfig_v1beta1"),
     t("workstationsworkstationcluster_v1alpha1"),
     i(nil, "resource"),
   }

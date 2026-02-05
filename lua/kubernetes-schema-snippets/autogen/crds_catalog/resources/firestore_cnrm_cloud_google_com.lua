@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("firestoredatabase_v1alpha1"),
+    t("firestoredatabase_v1beta1"),
     t("firestoreindex_v1beta1"),
     i(nil, "resource"),
   }

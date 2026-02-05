@@ -7,6 +7,8 @@ return function()
     t("account_v1beta2"),
     t("consumer_v1beta1"),
     t("consumer_v1beta2"),
+    t("keyvalue_v1beta2"),
+    t("objectstore_v1beta2"),
     t("stream_v1beta1"),
     t("stream_v1beta2"),
     t("streamtemplate_v1beta1"),

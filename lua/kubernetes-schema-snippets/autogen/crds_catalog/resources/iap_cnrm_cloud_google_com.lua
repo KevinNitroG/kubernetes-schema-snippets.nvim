@@ -6,6 +6,8 @@ return function()
   return {
     t("iapbrand_v1beta1"),
     t("iapidentityawareproxyclient_v1beta1"),
+    t("iapsettings_v1alpha1"),
+    t("iapsettings_v1beta1"),
     i(nil, "resource"),
   }
 end

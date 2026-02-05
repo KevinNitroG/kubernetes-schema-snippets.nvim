@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("essentialcontactscontact_v1alpha1"),
+    t("essentialcontactscontact_v1beta1"),
     i(nil, "resource"),
   }
 end

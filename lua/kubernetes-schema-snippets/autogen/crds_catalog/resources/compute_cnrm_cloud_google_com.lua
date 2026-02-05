@@ -10,6 +10,7 @@ return function()
     t("computebackendbucketsignedurlkey_v1alpha1"),
     t("computebackendservice_v1beta1"),
     t("computebackendservicesignedurlkey_v1alpha1"),
+    t("computeclass_v1"),
     t("computedisk_v1beta1"),
     t("computediskresourcepolicyattachment_v1alpha1"),
     t("computeexternalvpngateway_v1beta1"),

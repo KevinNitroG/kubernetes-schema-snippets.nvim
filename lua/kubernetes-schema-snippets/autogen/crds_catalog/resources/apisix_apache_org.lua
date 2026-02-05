@@ -17,6 +17,11 @@ return function()
     t("apisixtls_v2beta3"),
     t("apisixupstream_v2"),
     t("apisixupstream_v2beta3"),
+    t("backendtrafficpolicy_v1alpha1"),
+    t("consumer_v1alpha1"),
+    t("gatewayproxy_v1alpha1"),
+    t("httproutepolicy_v1alpha1"),
+    t("pluginconfig_v1alpha1"),
     i(nil, "resource"),
   }
 end

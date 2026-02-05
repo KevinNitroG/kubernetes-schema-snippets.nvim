@@ -4,12 +4,18 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("ciliumbgpadvertisement_v2"),
     t("ciliumbgpadvertisement_v2alpha1"),
+    t("ciliumbgpclusterconfig_v2"),
     t("ciliumbgpclusterconfig_v2alpha1"),
+    t("ciliumbgpnodeconfig_v2"),
     t("ciliumbgpnodeconfig_v2alpha1"),
+    t("ciliumbgpnodeconfigoverride_v2"),
     t("ciliumbgpnodeconfigoverride_v2alpha1"),
+    t("ciliumbgppeerconfig_v2"),
     t("ciliumbgppeerconfig_v2alpha1"),
     t("ciliumbgppeeringpolicy_v2alpha1"),
+    t("ciliumcidrgroup_v2"),
     t("ciliumcidrgroup_v2alpha1"),
     t("ciliumclusterwideenvoyconfig_v2"),
     t("ciliumclusterwidenetworkpolicy_v2"),
@@ -20,6 +26,7 @@ return function()
     t("ciliumexternalworkload_v2"),
     t("ciliumidentity_v2"),
     t("ciliuml2announcementpolicy_v2alpha1"),
+    t("ciliumloadbalancerippool_v2"),
     t("ciliumloadbalancerippool_v2alpha1"),
     t("ciliumlocalredirectpolicy_v2"),
     t("ciliumnetworkpolicy_v2"),

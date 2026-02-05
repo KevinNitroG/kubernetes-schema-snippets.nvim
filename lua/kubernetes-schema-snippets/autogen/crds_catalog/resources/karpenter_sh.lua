@@ -7,6 +7,7 @@ return function()
     t("machine_v1alpha5"),
     t("nodeclaim_v1"),
     t("nodeclaim_v1beta1"),
+    t("nodeoverlay_v1alpha1"),
     t("nodepool_v1"),
     t("nodepool_v1beta1"),
     t("provisioner_v1alpha5"),

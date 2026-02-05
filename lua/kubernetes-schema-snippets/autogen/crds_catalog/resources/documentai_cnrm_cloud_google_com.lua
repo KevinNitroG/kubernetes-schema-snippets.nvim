@@ -6,6 +6,8 @@ return function()
   return {
     t("documentaiprocessor_v1alpha1"),
     t("documentaiprocessordefaultversion_v1alpha1"),
+    t("documentaiprocessorversion_v1alpha1"),
+    t("documentaiprocessorversion_v1beta1"),
     i(nil, "resource"),
   }
 end

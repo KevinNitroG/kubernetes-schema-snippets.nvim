@@ -15,6 +15,7 @@ return function()
     t("vertexaiindex_v1beta1"),
     t("vertexaiindexendpoint_v1alpha1"),
     t("vertexaimetadatastore_v1alpha1"),
+    t("vertexaimetadatastore_v1beta1"),
     t("vertexaitensorboard_v1alpha1"),
     i(nil, "resource"),
   }

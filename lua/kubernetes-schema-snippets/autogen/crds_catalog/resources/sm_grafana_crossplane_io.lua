@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("check_v1alpha1"),
+    t("checkalerts_v1alpha1"),
     t("installation_v1alpha1"),
     t("probe_v1alpha1"),
     i(nil, "resource"),

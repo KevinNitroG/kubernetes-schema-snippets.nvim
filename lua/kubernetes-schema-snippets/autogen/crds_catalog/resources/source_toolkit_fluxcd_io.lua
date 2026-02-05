@@ -7,6 +7,7 @@ return function()
     t("bucket_v1"),
     t("bucket_v1beta1"),
     t("bucket_v1beta2"),
+    t("externalartifact_v1"),
     t("gitrepository_v1"),
     t("gitrepository_v1beta1"),
     t("gitrepository_v1beta2"),

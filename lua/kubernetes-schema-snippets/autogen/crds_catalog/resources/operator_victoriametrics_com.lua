@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("vlagent_v1"),
     t("vlcluster_v1"),
     t("vlogs_v1beta1"),
     t("vlsingle_v1"),
@@ -11,6 +12,7 @@ return function()
     t("vmalert_v1beta1"),
     t("vmalertmanager_v1beta1"),
     t("vmalertmanagerconfig_v1beta1"),
+    t("vmanomaly_v1"),
     t("vmauth_v1beta1"),
     t("vmcluster_v1beta1"),
     t("vmnodescrape_v1beta1"),
@@ -22,6 +24,8 @@ return function()
     t("vmsingle_v1beta1"),
     t("vmstaticscrape_v1beta1"),
     t("vmuser_v1beta1"),
+    t("vtcluster_v1"),
+    t("vtsingle_v1"),
     i(nil, "resource"),
   }
 end

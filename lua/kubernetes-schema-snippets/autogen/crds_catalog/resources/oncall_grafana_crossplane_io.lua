@@ -11,6 +11,7 @@ return function()
     t("outgoingwebhook_v1alpha1"),
     t("route_v1alpha1"),
     t("schedule_v1alpha1"),
+    t("usernotificationrule_v1alpha1"),
     i(nil, "resource"),
   }
 end

@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("mpijob_v2beta1"),
     t("notebook_v1"),
     t("notebook_v1alpha1"),
     t("notebook_v1beta1"),

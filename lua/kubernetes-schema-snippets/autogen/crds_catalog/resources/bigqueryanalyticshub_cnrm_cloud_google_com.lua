@@ -7,6 +7,7 @@ return function()
     t("bigqueryanalyticshubdataexchange_v1alpha1"),
     t("bigqueryanalyticshubdataexchange_v1beta1"),
     t("bigqueryanalyticshublisting_v1alpha1"),
+    t("bigqueryanalyticshublisting_v1beta1"),
     i(nil, "resource"),
   }
 end

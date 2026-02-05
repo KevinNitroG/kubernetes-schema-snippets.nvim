@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("hivemqcluster_v1"),
     t("hivemqplatform_v1"),
     i(nil, "resource"),
   }

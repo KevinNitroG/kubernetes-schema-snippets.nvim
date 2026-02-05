@@ -6,6 +6,7 @@ return function()
   return {
     t("component_v1alpha1"),
     t("configuration_v1alpha1"),
+    t("httpendpoint_v1alpha1"),
     t("resiliency_v1alpha1"),
     t("subscription_v1alpha1"),
     t("subscription_v2alpha1"),

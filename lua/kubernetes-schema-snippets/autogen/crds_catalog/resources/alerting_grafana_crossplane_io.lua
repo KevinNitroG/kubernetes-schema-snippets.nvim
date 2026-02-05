@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("alertenrichmentv1beta1_v1alpha1"),
     t("contactpoint_v1alpha1"),
     t("messagetemplate_v1alpha1"),
     t("mutetiming_v1alpha1"),

@@ -4,6 +4,8 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("storageanywherecache_v1alpha1"),
+    t("storageanywherecache_v1beta1"),
     t("storagebucket_v1beta1"),
     t("storagebucketaccesscontrol_v1beta1"),
     t("storagedefaultobjectaccesscontrol_v1beta1"),

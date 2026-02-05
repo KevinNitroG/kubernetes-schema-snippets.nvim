@@ -16,6 +16,7 @@ return function()
     t("grafananotificationpolicy_v1beta1"),
     t("grafananotificationpolicyroute_v1beta1"),
     t("grafananotificationtemplate_v1beta1"),
+    t("grafanaserviceaccount_v1beta1"),
     i(nil, "resource"),
   }
 end

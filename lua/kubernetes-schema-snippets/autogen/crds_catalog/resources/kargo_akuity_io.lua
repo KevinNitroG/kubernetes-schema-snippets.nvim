@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("clusterconfig_v1alpha1"),
     t("clusterpromotiontask_v1alpha1"),
     t("freight_v1alpha1"),
     t("project_v1alpha1"),
