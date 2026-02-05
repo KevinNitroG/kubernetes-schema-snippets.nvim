@@ -12,12 +12,16 @@ return {
       trig = "schema-kube",
       desc = "Kubernetes Schema from yannh/kubernetes-json-schema",
     },
-    fmt("# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{}/{}.json", {
+    fmt("# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/{}{}/{}.json", {
       d(1, function()
         local versions = require("kubernetes-schema-snippets.autogen.kubernetes.versions")()
         return sn(nil, { c(1, versions) })
       end),
       d(2, function()
+        local types = require("kubernetes-schema-snippets.autogen.kubernetes.types")()
+        return sn(nil, { c(1, types) })
+      end),
+      d(3, function()
         local resources = require("kubernetes-schema-snippets.autogen.kubernetes.resources")()
         return sn(nil, { c(1, resources) })
       end),
