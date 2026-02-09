@@ -17,6 +17,9 @@ jobs:
     concurrency:
       group: generate
     steps:
+      - name: make some space
+        run: "sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost $AGENT_TOOLSDIRECTORY"
+
       - name: Checkout
         uses: actions/checkout@v6
         with:
