@@ -385,6 +385,7 @@ return function()
     t("postgresql.cnpg.io"),
     t("privateca.cnrm.cloud.google.com"),
     t("privilegedaccessmanager.cnrm.cloud.google.com"),
+    t("projectcalico.org"),
     t("projectcontour.io"),
     t("prometheusservice.services.k8s.aws"),
     t("protection.crossplane.io"),
