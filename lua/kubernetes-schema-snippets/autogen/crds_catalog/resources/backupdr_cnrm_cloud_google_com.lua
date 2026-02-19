@@ -9,6 +9,7 @@ return function()
     t("backupdrbackupplanassociation_v1alpha1"),
     t("backupdrbackupplanassociation_v1beta1"),
     t("backupdrbackupvault_v1alpha1"),
+    t("backupdrbackupvault_v1beta1"),
     i(nil, "resource"),
   }
 end
