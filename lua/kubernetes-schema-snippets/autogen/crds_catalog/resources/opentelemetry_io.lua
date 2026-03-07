@@ -8,6 +8,7 @@ return function()
     t("opampbridge_v1alpha1"),
     t("opentelemetrycollector_v1alpha1"),
     t("opentelemetrycollector_v1beta1"),
+    t("targetallocator_v1alpha1"),
     i(nil, "resource"),
   }
 end

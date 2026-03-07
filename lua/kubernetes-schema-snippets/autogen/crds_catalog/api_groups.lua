@@ -14,6 +14,7 @@ return function()
     t("addon.open-cluster-management.io"),
     t("addons.cluster.x-k8s.io"),
     t("agent.k8s.elastic.co"),
+    t("aigateway.envoyproxy.io"),
     t("ais.nvidia.com"),
     t("aiven.io"),
     t("akri.sh"),
@@ -233,6 +234,7 @@ return function()
     t("frontendobservability.grafana.crossplane.io"),
     t("gameservices.cnrm.cloud.google.com"),
     t("gateway.envoyproxy.io"),
+    t("gateway.kgateway.dev"),
     t("gateway.networking.k8s.io"),
     t("gateway.networking.x-k8s.io"),
     t("gateway.solo.io"),
@@ -506,6 +508,7 @@ return function()
     t("work.open-cluster-management.io"),
     t("workflows.cnrm.cloud.google.com"),
     t("workstations.cnrm.cloud.google.com"),
+    t("zfs.openebs.io"),
     i(nil, "api_group"),
   }
 end
