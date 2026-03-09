@@ -112,6 +112,7 @@ return function()
     t("v1alpha1applicationsettemplate"),
     t("v1alpha1applicationsettemplatemeta"),
     t("v1alpha1applicationsettree"),
+    t("v1alpha1applicationsetwatchevent"),
     t("v1alpha1applicationsource"),
     t("v1alpha1applicationsourcedirectory"),
     t("v1alpha1applicationsourcehelm"),
