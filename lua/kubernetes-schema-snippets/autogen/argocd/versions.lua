@@ -249,6 +249,7 @@ return function()
     t("v3.3.0-rc4"),
     t("v3.3.1"),
     t("v3.3.2"),
+    t("v3.3.3"),
     i(nil, "version"),
   }
 end
