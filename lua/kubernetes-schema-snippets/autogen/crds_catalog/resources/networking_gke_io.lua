@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("fqdnnetworkpolicy_v1alpha1"),
     t("frontendconfig_v1beta1"),
     t("gcpbackendpolicy_v1"),
     t("gcpgatewaypolicy_v1"),
