@@ -12,6 +12,7 @@ return function()
     t("grafanadatasource_v1beta1"),
     t("grafanafolder_v1beta1"),
     t("grafanalibrarypanel_v1beta1"),
+    t("grafanamanifest_v1beta1"),
     t("grafanamutetiming_v1beta1"),
     t("grafananotificationpolicy_v1beta1"),
     t("grafananotificationpolicyroute_v1beta1"),
