@@ -420,6 +420,7 @@ return function()
     t("rds.aws.m.upbound.io"),
     t("rds.aws.upbound.io"),
     t("rds.services.k8s.aws"),
+    t("readiness.node.x-k8s.io"),
     t("recaptchaenterprise.cnrm.cloud.google.com"),
     t("redhatopenshift.azure.com"),
     t("redis.cnrm.cloud.google.com"),

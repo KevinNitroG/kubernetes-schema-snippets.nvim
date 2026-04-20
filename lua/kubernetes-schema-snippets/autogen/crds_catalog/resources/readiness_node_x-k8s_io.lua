@@ -4,8 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
-    t("clusteroriginissuer_v1"),
-    t("originissuer_v1"),
+    t("nodereadinessrule_v1alpha1"),
     i(nil, "resource"),
   }
 end

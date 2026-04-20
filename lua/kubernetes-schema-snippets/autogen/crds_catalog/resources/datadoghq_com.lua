@@ -6,6 +6,7 @@ return function()
   return {
     t("datadogagent_v1alpha1"),
     t("datadogagent_v2alpha1"),
+    t("datadogagentinternal_v1alpha1"),
     t("datadogagentprofile_v1alpha1"),
     t("datadogdashboard_v1alpha1"),
     t("datadoggenericresource_v1alpha1"),
