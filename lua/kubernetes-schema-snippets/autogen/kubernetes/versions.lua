@@ -258,6 +258,7 @@ return function()
     t("v1.35.2"),
     t("v1.35.3"),
     t("v1.35.4"),
+    t("v1.36.0"),
     i(nil, "version"),
   }
 end
