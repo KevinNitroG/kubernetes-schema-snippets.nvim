@@ -4,9 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
-    t("adoptedresource_v1alpha1"),
-    t("fieldexport_v1alpha1"),
-    t("iamroleselector_v1alpha1"),
+    t("hetznerconfig_v1"),
     i(nil, "resource"),
   }
 end

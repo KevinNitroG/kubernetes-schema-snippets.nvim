@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("gitlab_v1beta1"),
+    t("runner_v1beta2"),
     i(nil, "resource"),
   }
 end
