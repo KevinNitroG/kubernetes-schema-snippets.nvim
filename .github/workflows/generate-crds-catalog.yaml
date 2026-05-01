@@ -86,7 +86,7 @@ jobs:
               ./.scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"
           done
 
-      - uses: JohnnyMorganz/stylua-action@v4
+      - uses: JohnnyMorganz/stylua-action@v5
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
