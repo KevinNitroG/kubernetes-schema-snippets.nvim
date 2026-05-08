@@ -124,6 +124,8 @@ return function()
     t("cloudtasks.cnrm.cloud.google.com"),
     t("cloudtrail.services.k8s.aws"),
     t("cloudwatch.services.k8s.aws"),
+    t("cloudwatchevents.aws.m.upbound.io"),
+    t("cloudwatchevents.aws.upbound.io"),
     t("cloudwatchlogs.services.k8s.aws"),
     t("cluster.open-cluster-management.io"),
     t("cluster.redpanda.com"),
