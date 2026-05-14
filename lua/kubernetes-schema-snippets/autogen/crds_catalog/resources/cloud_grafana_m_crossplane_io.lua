@@ -7,7 +7,6 @@ return function()
     t("accesspolicy_v1alpha1"),
     t("accesspolicyrotatingtoken_v1alpha1"),
     t("accesspolicytoken_v1alpha1"),
-    t("apikey_v1alpha1"),
     t("appo11yconfigv1alpha1_v1alpha1"),
     t("dbo11yconfigv1alpha1_v1alpha1"),
     t("k8so11yconfigv1alpha1_v1alpha1"),
