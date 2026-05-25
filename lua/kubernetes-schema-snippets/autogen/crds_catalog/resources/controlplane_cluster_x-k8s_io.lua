@@ -12,6 +12,8 @@ return function()
     t("k0scontrolplanetemplate_v1beta1"),
     t("k0smotroncontrolplane_v1beta1"),
     t("k0smotroncontrolplanetemplate_v1beta1"),
+    t("kamajicontrolplane_v1alpha1"),
+    t("kamajicontrolplanetemplate_v1alpha1"),
     t("kubeadmcontrolplane_v1alpha3"),
     t("kubeadmcontrolplane_v1alpha4"),
     t("kubeadmcontrolplane_v1beta1"),

@@ -8,7 +8,9 @@ return function()
     t("dnsconfig_v1alpha1"),
     t("proxyclass_v1alpha1"),
     t("proxygroup_v1alpha1"),
+    t("proxygrouppolicy_v1alpha1"),
     t("recorder_v1alpha1"),
+    t("tailnet_v1alpha1"),
     i(nil, "resource"),
   }
 end
