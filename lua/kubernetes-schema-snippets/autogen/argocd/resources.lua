@@ -276,6 +276,7 @@ return function()
     t("v1objectreference"),
     t("v1ownerreference"),
     t("v1portstatus"),
+    t("v1shardinfo"),
     t("v1time"),
     t("versionversionmessage"),
     i(nil, "resource"),
