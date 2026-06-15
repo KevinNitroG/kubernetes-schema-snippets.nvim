@@ -5,7 +5,9 @@ local i = ls.insert_node
 return function()
   return {
     t("keycloak_v2alpha1"),
+    t("keycloak_v2beta1"),
     t("keycloakrealmimport_v2alpha1"),
+    t("keycloakrealmimport_v2beta1"),
     i(nil, "resource"),
   }
 end
