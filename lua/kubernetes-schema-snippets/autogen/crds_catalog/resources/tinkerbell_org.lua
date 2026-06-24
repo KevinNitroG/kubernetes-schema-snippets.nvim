@@ -7,6 +7,7 @@ return function()
     t("hardware_v1alpha1"),
     t("template_v1alpha1"),
     t("workflow_v1alpha1"),
+    t("workflowruleset_v1alpha1"),
     i(nil, "resource"),
   }
 end
