@@ -9,6 +9,7 @@ return function()
     t("cluster_v3"),
     t("clusterimagecatalog_v1"),
     t("database_v1"),
+    t("databaserole_v1"),
     t("failoverquorum_v1"),
     t("imagecatalog_v1"),
     t("pooler_v1"),
