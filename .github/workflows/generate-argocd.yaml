@@ -90,7 +90,7 @@ jobs:
         run: |
           stylua ${{ env.OUTPUT }}/*
 
-      - uses: EndBug/add-and-commit@v10
+      - uses: EndBug/add-and-commit@v11
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         with:
           add: ${{ env.OUTPUT }}/
