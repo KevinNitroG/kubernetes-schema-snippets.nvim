@@ -167,6 +167,7 @@ return function()
     t("containerregistry.azure.com"),
     t("containerservice.azure.com"),
     t("controlplane.cluster.x-k8s.io"),
+    t("coralogix.com"),
     t("core.cnrm.cloud.google.com"),
     t("core.openfeature.dev"),
     t("core.strimzi.io"),

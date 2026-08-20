@@ -19,10 +19,12 @@ return function()
     t("referencegrant_v1"),
     t("referencegrant_v1alpha2"),
     t("referencegrant_v1beta1"),
+    t("tcproute_v1"),
     t("tcproute_v1alpha2"),
     t("tlsroute_v1"),
     t("tlsroute_v1alpha2"),
     t("tlsroute_v1alpha3"),
+    t("udproute_v1"),
     t("udproute_v1alpha2"),
     i(nil, "resource"),
   }

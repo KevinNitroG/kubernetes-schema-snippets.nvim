@@ -6,6 +6,7 @@ return function()
   return {
     t("connector_v1alpha1"),
     t("dnsconfig_v1alpha1"),
+    t("peerrelay_v1alpha1"),
     t("proxyclass_v1alpha1"),
     t("proxygroup_v1alpha1"),
     t("proxygrouppolicy_v1alpha1"),
