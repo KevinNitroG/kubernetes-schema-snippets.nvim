@@ -6,8 +6,10 @@ return function()
   return {
     t("globalinclusterippool_v1alpha1"),
     t("globalinclusterippool_v1alpha2"),
+    t("globalinclusterprefixpool_v1alpha2"),
     t("inclusterippool_v1alpha1"),
     t("inclusterippool_v1alpha2"),
+    t("inclusterprefixpool_v1alpha2"),
     t("ipaddress_v1alpha1"),
     t("ipaddress_v1beta1"),
     t("ipaddress_v1beta2"),
