@@ -6,6 +6,8 @@ return function()
   return {
     t("orgpolicycustomconstraint_v1alpha1"),
     t("orgpolicycustomconstraint_v1beta1"),
+    t("orgpolicypolicy_v1alpha1"),
+    t("orgpolicypolicy_v1beta1"),
     i(nil, "resource"),
   }
 end

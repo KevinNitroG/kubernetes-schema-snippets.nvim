@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("tagslocationtagbinding_v1alpha1"),
+    t("tagslocationtagbinding_v1beta1"),
     t("tagstagbinding_v1beta1"),
     t("tagstagkey_v1beta1"),
     t("tagstagvalue_v1beta1"),
