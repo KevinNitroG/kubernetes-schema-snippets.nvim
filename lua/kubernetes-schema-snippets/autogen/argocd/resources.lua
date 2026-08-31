@@ -170,6 +170,7 @@ return function()
     t("v1alpha1hydrateto"),
     t("v1alpha1info"),
     t("v1alpha1infoitem"),
+    t("v1alpha1inlinesyncwindow"),
     t("v1alpha1jsonnetvar"),
     t("v1alpha1jwttoken"),
     t("v1alpha1jwttokens"),
