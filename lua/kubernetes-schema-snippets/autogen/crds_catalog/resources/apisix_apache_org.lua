@@ -21,6 +21,7 @@ return function()
     t("consumer_v1alpha1"),
     t("gatewayproxy_v1alpha1"),
     t("httproutepolicy_v1alpha1"),
+    t("l4routepolicy_v1alpha1"),
     t("pluginconfig_v1alpha1"),
     i(nil, "resource"),
   }

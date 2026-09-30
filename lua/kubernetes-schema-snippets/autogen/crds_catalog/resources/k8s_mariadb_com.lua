@@ -12,6 +12,7 @@ return function()
     t("mariadb_v1alpha1"),
     t("maxscale_v1alpha1"),
     t("physicalbackup_v1alpha1"),
+    t("pointintimerecovery_v1alpha1"),
     t("restore_v1alpha1"),
     t("sqljob_v1alpha1"),
     t("user_v1alpha1"),
