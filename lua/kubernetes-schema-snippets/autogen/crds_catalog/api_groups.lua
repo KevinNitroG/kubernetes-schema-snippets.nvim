@@ -21,6 +21,7 @@ return function()
     t("ais.nvidia.com"),
     t("aiven.io"),
     t("akri.sh"),
+    t("alb.networking.azure.io"),
     t("alerting.grafana.crossplane.io"),
     t("alerting.grafana.m.crossplane.io"),
     t("alertsmanagement.azure.com"),

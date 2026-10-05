@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("clusterobservability_v1alpha1"),
     t("instrumentation_v1alpha1"),
     t("opampbridge_v1alpha1"),
     t("opentelemetrycollector_v1alpha1"),
