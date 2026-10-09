@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("acraccesstoken_v1alpha1"),
+    t("beyondtrustworkloadcredentialsdynamicsecret_v1alpha1"),
     t("cloudsmithaccesstoken_v1alpha1"),
     t("clustergenerator_v1alpha1"),
     t("ecrauthorizationtoken_v1alpha1"),
@@ -12,6 +13,7 @@ return function()
     t("gcraccesstoken_v1alpha1"),
     t("generatorstate_v1alpha1"),
     t("githubaccesstoken_v1alpha1"),
+    t("gitlabdeploytoken_v1alpha1"),
     t("grafana_v1alpha1"),
     t("mfa_v1alpha1"),
     t("password_v1alpha1"),
