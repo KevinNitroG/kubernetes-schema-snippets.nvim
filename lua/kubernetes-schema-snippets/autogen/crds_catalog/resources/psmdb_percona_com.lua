@@ -6,6 +6,7 @@ return function()
   return {
     t("perconaservermongodb_v1"),
     t("perconaservermongodbbackup_v1"),
+    t("perconaservermongodbclustersync_v1"),
     t("perconaservermongodbrestore_v1"),
     i(nil, "resource"),
   }
