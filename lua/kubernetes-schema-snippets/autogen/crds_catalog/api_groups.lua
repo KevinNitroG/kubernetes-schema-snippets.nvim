@@ -80,6 +80,7 @@ return function()
     t("azure.upbound.io"),
     t("azureprovider.k8s.io"),
     t("backupdr.cnrm.cloud.google.com"),
+    t("ballast.tightlinesoftware.com"),
     t("barmancloud.cnpg.io"),
     t("batch.azure.com"),
     t("beat.k8s.elastic.co"),
