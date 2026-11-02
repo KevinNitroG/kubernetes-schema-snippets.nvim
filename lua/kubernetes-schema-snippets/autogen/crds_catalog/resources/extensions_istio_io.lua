@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("trafficextension_v1alpha1"),
     t("wasmplugin_v1alpha1"),
     i(nil, "resource"),
   }

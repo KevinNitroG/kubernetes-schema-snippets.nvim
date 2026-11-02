@@ -11,6 +11,7 @@ return function()
     t("dynakube_v1beta3"),
     t("dynakube_v1beta4"),
     t("dynakube_v1beta5"),
+    t("dynakube_v1beta6"),
     t("edgeconnect_v1alpha1"),
     t("edgeconnect_v1alpha2"),
     i(nil, "resource"),

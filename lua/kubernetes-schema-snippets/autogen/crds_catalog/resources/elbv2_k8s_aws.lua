@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("albtargetcontrolconfig_v1beta1"),
     t("ingressclassparams_v1beta1"),
     t("targetgroupbinding_v1alpha1"),
     t("targetgroupbinding_v1beta1"),

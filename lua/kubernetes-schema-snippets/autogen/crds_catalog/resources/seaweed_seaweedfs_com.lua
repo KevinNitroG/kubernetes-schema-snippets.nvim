@@ -7,6 +7,7 @@ return function()
     t("adminscript_v1"),
     t("bucket_v1"),
     t("bucketlifecyclepolicy_v1"),
+    t("bucketnotification_v1"),
     t("resourcereferencegrant_v1"),
     t("s3credentials_v1"),
     t("s3identity_v1"),

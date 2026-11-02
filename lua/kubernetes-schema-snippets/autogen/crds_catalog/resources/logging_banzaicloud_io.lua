@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("axosyslog_v1beta1"),
     t("clusterflow_v1alpha1"),
     t("clusterflow_v1beta1"),
     t("clusteroutput_v1alpha1"),

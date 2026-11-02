@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("dnsendpoint_v1alpha1"),
+    t("dnsrecord_v1alpha1"),
     i(nil, "resource"),
   }
 end
