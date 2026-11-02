@@ -253,6 +253,7 @@ return function()
     t("v1alpha1syncoperationresult"),
     t("v1alpha1syncpolicy"),
     t("v1alpha1syncpolicyautomated"),
+    t("v1alpha1syncpolicymanualdefaults"),
     t("v1alpha1syncsource"),
     t("v1alpha1syncstatus"),
     t("v1alpha1syncstrategy"),
