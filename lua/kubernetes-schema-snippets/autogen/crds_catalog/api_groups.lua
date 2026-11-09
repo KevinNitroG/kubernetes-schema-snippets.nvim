@@ -282,6 +282,7 @@ return function()
     t("frontendobservability.grafana.m.crossplane.io"),
     t("frontendobservability.grafana.o.crossplane.io"),
     t("gameservices.cnrm.cloud.google.com"),
+    t("garage.rajsingh.info"),
     t("gateway.envoyproxy.io"),
     t("gateway.k8s.aws"),
     t("gateway.kgateway.dev"),

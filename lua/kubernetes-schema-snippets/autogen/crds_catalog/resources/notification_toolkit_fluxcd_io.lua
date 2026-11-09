@@ -4,9 +4,11 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("alert_v1"),
     t("alert_v1beta1"),
     t("alert_v1beta2"),
     t("alert_v1beta3"),
+    t("provider_v1"),
     t("provider_v1beta1"),
     t("provider_v1beta2"),
     t("provider_v1beta3"),
