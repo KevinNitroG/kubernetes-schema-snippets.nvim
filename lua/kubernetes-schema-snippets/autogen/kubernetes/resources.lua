@@ -95,6 +95,8 @@ return function()
     t("certificatesigningrequestspec-certificates-v1"),
     t("certificatesigningrequeststatus"),
     t("certificatesigningrequeststatus-certificates-v1"),
+    t("cgroupoptions"),
+    t("cgroupoptions-v1"),
     t("cinderpersistentvolumesource"),
     t("cinderpersistentvolumesource-v1"),
     t("cindervolumesource"),
