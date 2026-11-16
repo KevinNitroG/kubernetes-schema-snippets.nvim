@@ -178,6 +178,7 @@ return function()
     t("controlplane.cluster.x-k8s.io"),
     t("coralogix.com"),
     t("core.cnrm.cloud.google.com"),
+    t("core.libopenstorage.org"),
     t("core.openfeature.dev"),
     t("core.strimzi.io"),
     t("coroot.com"),
