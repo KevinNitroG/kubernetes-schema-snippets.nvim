@@ -249,6 +249,8 @@ return function()
     t("csinode-storage-v1"),
     t("csinodedriver"),
     t("csinodedriver-storage-v1"),
+    t("csinodedriverregistration"),
+    t("csinodedriverregistration-storage-v1"),
     t("csinodelist"),
     t("csinodelist-storage-v1"),
     t("csinodespec"),
