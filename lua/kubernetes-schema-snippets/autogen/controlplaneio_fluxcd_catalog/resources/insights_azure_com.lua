@@ -1,0 +1,45 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("actiongroup_v1api20230101"),
+    t("actiongroup_v1api20230101storage"),
+    t("activitylogalert_v1api20201001"),
+    t("activitylogalert_v1api20201001storage"),
+    t("autoscalesetting_v1api20221001"),
+    t("autoscalesetting_v1api20221001storage"),
+    t("component_v1api20200202"),
+    t("component_v1api20200202storage"),
+    t("datacollectionendpoint_v1api20230311"),
+    t("datacollectionendpoint_v1api20230311storage"),
+    t("datacollectionendpoint_v1api20240311"),
+    t("datacollectionendpoint_v1api20240311storage"),
+    t("datacollectionrule_v1api20230311"),
+    t("datacollectionrule_v1api20230311storage"),
+    t("datacollectionrule_v1api20240311"),
+    t("datacollectionrule_v1api20240311storage"),
+    t("datacollectionruleassociation_v1api20230311"),
+    t("datacollectionruleassociation_v1api20230311storage"),
+    t("datacollectionruleassociation_v1api20240311"),
+    t("datacollectionruleassociation_v1api20240311storage"),
+    t("diagnosticsetting_v1api20210501preview"),
+    t("diagnosticsetting_v1api20210501previewstorage"),
+    t("metricalert_v1api20180301"),
+    t("metricalert_v1api20180301storage"),
+    t("pricingplan_v1api20171001"),
+    t("pricingplan_v1api20171001storage"),
+    t("scheduledqueryrule_v1api20220615"),
+    t("scheduledqueryrule_v1api20220615storage"),
+    t("scheduledqueryrule_v1api20250101preview"),
+    t("scheduledqueryrule_v1api20250101previewstorage"),
+    t("webtest_v1api20180501preview"),
+    t("webtest_v1api20180501previewstorage"),
+    t("webtest_v1api20220615"),
+    t("webtest_v1api20220615storage"),
+    t("workbook_v1api20230601"),
+    t("workbook_v1api20230601storage"),
+    i(nil, "resource"),
+  }
+end

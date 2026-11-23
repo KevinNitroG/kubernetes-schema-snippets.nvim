@@ -1,0 +1,16 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("monitoralertprocessingruleactiongroup_v1beta1"),
+    t("monitoralertprocessingruleactiongroup_v1beta2"),
+    t("monitoralertprocessingrulesuppression_v1beta1"),
+    t("monitoralertprocessingrulesuppression_v1beta2"),
+    t("monitoralertprometheusrulegroup_v1beta1"),
+    t("monitorsmartdetectoralertrule_v1beta1"),
+    t("monitorsmartdetectoralertrule_v1beta2"),
+    i(nil, "resource"),
+  }
+end

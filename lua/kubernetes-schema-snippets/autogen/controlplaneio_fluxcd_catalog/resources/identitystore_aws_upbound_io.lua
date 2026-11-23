@@ -1,0 +1,13 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("group_v1beta1"),
+    t("groupmembership_v1beta1"),
+    t("user_v1beta1"),
+    t("user_v1beta2"),
+    i(nil, "resource"),
+  }
+end

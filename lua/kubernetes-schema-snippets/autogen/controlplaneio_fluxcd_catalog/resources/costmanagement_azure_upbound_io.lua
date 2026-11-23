@@ -1,0 +1,14 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("costanomalyalert_v1beta1"),
+    t("resourcegroupcostmanagementexport_v1beta1"),
+    t("resourcegroupcostmanagementexport_v1beta2"),
+    t("subscriptioncostmanagementexport_v1beta1"),
+    t("subscriptioncostmanagementexport_v1beta2"),
+    i(nil, "resource"),
+  }
+end

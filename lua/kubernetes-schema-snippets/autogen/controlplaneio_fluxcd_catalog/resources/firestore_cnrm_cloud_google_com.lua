@@ -1,0 +1,15 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("firestorebackupschedule_v1alpha1"),
+    t("firestoredatabase_v1alpha1"),
+    t("firestoredatabase_v1beta1"),
+    t("firestoredocument_v1alpha1"),
+    t("firestorefield_v1alpha1"),
+    t("firestoreindex_v1beta1"),
+    i(nil, "resource"),
+  }
+end

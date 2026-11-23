@@ -1,0 +1,13 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("pipeline_v1beta1"),
+    t("pipeline_v1beta2"),
+    t("preset_v1beta1"),
+    t("preset_v1beta2"),
+    i(nil, "resource"),
+  }
+end

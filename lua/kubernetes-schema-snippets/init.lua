@@ -10,6 +10,7 @@ local default_opts = {
     kubernetes = true,
     kustomize = true,
     crds_catalog = true,
+    controlplaneio_fluxcd_catalog = true,
     argocd = true,
     flux2 = true,
   },
@@ -28,6 +29,9 @@ function M.setup(opts)
     end
     if integrations.crds_catalog then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.crds_catalog"))
+    end
+    if integrations.controlplaneio_fluxcd_catalog then
+      ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.controlplaneio_fluxcd_catalog"))
     end
     if integrations.argocd then
       ls.add_snippets(ft, require("kubernetes-schema-snippets.snippets.argocd"))

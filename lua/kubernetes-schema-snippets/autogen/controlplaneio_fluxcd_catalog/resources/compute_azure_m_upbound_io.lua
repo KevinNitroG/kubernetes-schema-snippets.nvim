@@ -1,0 +1,34 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("availabilityset_v1beta1"),
+    t("capacityreservation_v1beta1"),
+    t("capacityreservationgroup_v1beta1"),
+    t("dedicatedhost_v1beta1"),
+    t("diskaccess_v1beta1"),
+    t("diskencryptionset_v1beta1"),
+    t("galleryapplication_v1beta1"),
+    t("galleryapplicationversion_v1beta1"),
+    t("image_v1beta1"),
+    t("linuxvirtualmachine_v1beta1"),
+    t("linuxvirtualmachinescaleset_v1beta1"),
+    t("manageddisk_v1beta1"),
+    t("manageddisksastoken_v1beta1"),
+    t("orchestratedvirtualmachinescaleset_v1beta1"),
+    t("proximityplacementgroup_v1beta1"),
+    t("sharedimage_v1beta1"),
+    t("sharedimagegallery_v1beta1"),
+    t("snapshot_v1beta1"),
+    t("sshpublickey_v1beta1"),
+    t("virtualmachinedatadiskattachment_v1beta1"),
+    t("virtualmachineextension_v1beta1"),
+    t("virtualmachineruncommand_v1beta1"),
+    t("virtualmachinescalesetstandbypool_v1beta1"),
+    t("windowsvirtualmachine_v1beta1"),
+    t("windowsvirtualmachinescaleset_v1beta1"),
+    i(nil, "resource"),
+  }
+end

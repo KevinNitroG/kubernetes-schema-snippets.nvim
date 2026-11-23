@@ -1,0 +1,13 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("certificate_v1alpha1"),
+    t("clusterdomainclaim_v1alpha1"),
+    t("ingress_v1alpha1"),
+    t("serverlessservice_v1alpha1"),
+    i(nil, "resource"),
+  }
+end

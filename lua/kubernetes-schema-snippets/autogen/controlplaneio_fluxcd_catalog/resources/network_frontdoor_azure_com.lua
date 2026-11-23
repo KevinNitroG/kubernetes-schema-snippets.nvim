@@ -1,0 +1,11 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("webapplicationfirewallpolicy_v1api20220501"),
+    t("webapplicationfirewallpolicy_v1api20220501storage"),
+    i(nil, "resource"),
+  }
+end

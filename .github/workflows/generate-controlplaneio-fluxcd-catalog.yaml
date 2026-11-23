@@ -1,0 +1,107 @@
+name: Generate Controlplaneio FluxCD Catalog
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *"
+env:
+  OUTPUT: ./lua/kubernetes-schema-snippets/autogen/controlplaneio_fluxcd_catalog
+  REPO: controlplaneio-fluxcd/schema-catalog
+  HEAD: main
+  CLONE_PATH: controlplaneio-fluxcd-catalog
+jobs:
+  generate:
+    permissions:
+      contents: write
+    name: Generate
+    runs-on: ubuntu-latest
+    concurrency:
+      group: generate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Fetch latest ${{ env.REPO }} hash
+        id: get_hash
+        run: |
+          HASH=$(git ls-remote 'https://github.com/${{ env.REPO }}.git' 'refs/heads/${{ env.HEAD }}' | cut -f1)
+          echo "LATEST_HASH=${HASH}" >> "${GITHUB_OUTPUT}"
+          echo "${HASH}" > latest_hash.txt
+
+      - name: Restore hash cache
+        id: cache
+        uses: actions/cache@v5
+        with:
+          path: latest_hash.txt
+          key: controlplaneio-fluxcd-catalog-${{ steps.get_hash.outputs.LATEST_HASH }}
+          restore-keys: |
+            controlplaneio-fluxcd-catalog-
+
+      - name: Checkout ${{ env.REPO }} repo
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ env.REPO }}
+          path: ${{ env.CLONE_PATH }}
+          ref: ${{ steps.get_hash.outputs.LATEST_HASH }}
+          fetch-depth: 1
+          sparse-checkout: |
+            /README.md
+          sparse-checkout-cone-mode: false
+
+      - name: Generate api groups
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          git -C '${{ env.CLONE_PATH }}' ls-tree -r --name-only HEAD catalog |
+            grep -E '^catalog/[^/]+/[^/]+\.json$' > catalog_paths.txt
+          test -s catalog_paths.txt
+          api_groups=$(cut -d/ -f2 catalog_paths.txt | sort -u)
+          {
+            echo 'API_GROUPS<<EOF'
+            echo "$api_groups"
+            echo 'EOF'
+          } >> "$GITHUB_ENV"
+          mkdir -p '${{ env.OUTPUT }}/resources'
+          echo "$api_groups" | ./.scripts/transform-fields-to-lua.sh -f 'api_group' > '${{ env.OUTPUT }}/api_groups.lua'
+
+      - name: Generate resources
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          for group in $API_GROUPS; do
+            finalise_name="${group//./_}"
+            awk -F/ -v group="$group" '$2 == group { sub(/\.json$/, "", $3); print $3 }' catalog_paths.txt |
+              sort |
+              ./.scripts/transform-fields-to-lua.sh -f 'resource' > "${{ env.OUTPUT }}/resources/${finalise_name}.lua"
+          done
+          for resource in '${{ env.OUTPUT }}'/resources/*.lua; do
+            group=$(basename "$resource" .lua | tr '_' '.')
+            if ! grep -Fxq "$group" <<< "$API_GROUPS"; then
+              rm "$resource"
+            fi
+          done
+
+      - uses: JohnnyMorganz/stylua-action@v4
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: "false"
+
+      - name: Format auto generated files
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        shell: bash
+        run: |
+          find ${{ env.OUTPUT }}/ -type f -name '*.lua' -print0 | xargs -0 stylua
+
+      - uses: EndBug/add-and-commit@v9
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        with:
+          add: ${{ env.OUTPUT }}/
+          message: "feat(autogen): update Controlplaneio FluxCD catalog"
+          committer_name: GitHub Actions
+          committer_email: 41898282+github-actions[bot]@users.noreply.github.com
+          pull: --rebase --autostash

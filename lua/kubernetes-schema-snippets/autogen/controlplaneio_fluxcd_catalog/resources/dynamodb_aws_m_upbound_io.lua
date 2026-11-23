@@ -1,0 +1,17 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("contributorinsights_v1beta1"),
+    t("globaltable_v1beta1"),
+    t("kinesisstreamingdestination_v1beta1"),
+    t("resourcepolicy_v1beta1"),
+    t("table_v1beta1"),
+    t("tableitem_v1beta1"),
+    t("tablereplica_v1beta1"),
+    t("tag_v1beta1"),
+    i(nil, "resource"),
+  }
+end

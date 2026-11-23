@@ -1,0 +1,32 @@
+local ls = require("luasnip")
+local t = ls.text_node
+local i = ls.insert_node
+
+return function()
+  return {
+    t("app_v1beta1"),
+    t("appimageconfig_v1beta1"),
+    t("coderepository_v1beta1"),
+    t("device_v1beta1"),
+    t("devicefleet_v1beta1"),
+    t("domain_v1beta1"),
+    t("endpoint_v1beta1"),
+    t("endpointconfiguration_v1beta1"),
+    t("featuregroup_v1beta1"),
+    t("image_v1beta1"),
+    t("imageversion_v1beta1"),
+    t("mlflowtrackingserver_v1beta1"),
+    t("model_v1beta1"),
+    t("modelpackagegroup_v1beta1"),
+    t("modelpackagegrouppolicy_v1beta1"),
+    t("notebookinstance_v1beta1"),
+    t("notebookinstancelifecycleconfiguration_v1beta1"),
+    t("servicecatalogportfoliostatus_v1beta1"),
+    t("space_v1beta1"),
+    t("studiolifecycleconfig_v1beta1"),
+    t("userprofile_v1beta1"),
+    t("workforce_v1beta1"),
+    t("workteam_v1beta1"),
+    i(nil, "resource"),
+  }
+end

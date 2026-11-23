@@ -6,5 +6,6 @@
 ---@field kubernetes? boolean
 ---@field kustomize? boolean
 ---@field crds_catalog? boolean
+---@field controlplaneio_fluxcd_catalog? boolean
 ---@field argocd? boolean
 ---@field flux2? boolean

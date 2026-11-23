@@ -62,6 +62,7 @@ The differences from other plugins is that it doesn't patch, interfere the langu
     kubernetes = true,
     kustomize = true,
     crds_catalog = true,
+    controlplaneio_fluxcd_catalog = true,
     argocd = true,
     flux2 = true,
   },
@@ -74,6 +75,7 @@ The differences from other plugins is that it doesn't patch, interfere the langu
   - `schema-kube`
   - `schema-kustomize`, `kus`
   - `schema-crds-catalog`
+  - `schema-controlplaneio-fluxcd-catalog`
   - `schema-argocd`, `argocd-app`, `argocd-appset`
   - `schema-flux2`
 - Choose version, type, resources by iterating versions either using:
@@ -150,6 +152,7 @@ return {
 
 - <https://github.com/yannh/kubernetes-json-schema>
 - <https://github.com/datreeio/CRDs-catalog>
+- <https://github.com/controlplaneio-fluxcd/schema-catalog>
 - <https://github.com/KevinNitroG/argocd-json-schema>
 - <https://github.com/fluxcd-community/flux2-schemas>
 
