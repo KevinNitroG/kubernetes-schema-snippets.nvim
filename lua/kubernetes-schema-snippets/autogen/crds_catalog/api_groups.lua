@@ -321,6 +321,7 @@ return function()
     t("infrastructure.cluster.x-k8s.io"),
     t("ingress.oraclecloud.com"),
     t("ingress.v1.haproxy.org"),
+    t("ingress.v3.haproxy.org"),
     t("insights.azure.com"),
     t("installation.mattermost.com"),
     t("instance.falcosecurity.dev"),
