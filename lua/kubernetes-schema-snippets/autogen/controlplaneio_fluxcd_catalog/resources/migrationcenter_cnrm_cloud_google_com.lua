@@ -7,6 +7,7 @@ return function()
     t("migrationcentergroup_v1alpha1"),
     t("migrationcenterimportjob_v1alpha1"),
     t("migrationcenterpreferenceset_v1alpha1"),
+    t("migrationcenterreport_v1alpha1"),
     t("migrationcenterreportconfig_v1alpha1"),
     t("migrationcentersource_v1alpha1"),
     i(nil, "resource"),

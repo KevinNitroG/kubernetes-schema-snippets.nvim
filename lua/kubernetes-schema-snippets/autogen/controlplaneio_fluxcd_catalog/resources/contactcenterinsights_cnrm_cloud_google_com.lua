@@ -10,6 +10,7 @@ return function()
     t("ccinsightsphrasematcher_v1alpha1"),
     t("ccinsightsqaquestion_v1alpha1"),
     t("ccinsightsqascorecard_v1alpha1"),
+    t("ccinsightsqascorecardrevision_v1alpha1"),
     t("ccinsightsview_v1alpha1"),
     i(nil, "resource"),
   }

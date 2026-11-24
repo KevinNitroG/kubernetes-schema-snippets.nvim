@@ -5,8 +5,10 @@ local i = ls.insert_node
 return function()
   return {
     t("dialogflowagent_v1alpha1"),
+    t("dialogflowcompanionagent_v1alpha1"),
     t("dialogflowconversationdataset_v1alpha1"),
     t("dialogflowconversationmodel_v1alpha1"),
+    t("dialogflowconversationprofile_v1alpha1"),
     t("dialogflowentitytype_v1alpha1"),
     t("dialogflowenvironment_v1alpha1"),
     t("dialogflowflow_v1alpha1"),

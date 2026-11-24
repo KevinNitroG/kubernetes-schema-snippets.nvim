@@ -7,6 +7,7 @@ return function()
     t("saasservicemgmtrelease_v1alpha1"),
     t("saasservicemgmtrollout_v1alpha1"),
     t("saasservicemgmtrolloutkind_v1alpha1"),
+    t("saasservicemgmtsaas_v1alpha1"),
     t("saasservicemgmttenant_v1alpha1"),
     t("saasservicemgmtunit_v1alpha1"),
     t("saasservicemgmtunitkind_v1alpha1"),

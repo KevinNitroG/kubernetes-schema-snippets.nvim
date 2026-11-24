@@ -6,6 +6,7 @@ return function()
   return {
     t("parametermanagerparameter_v1alpha1"),
     t("parametermanagerparameterversion_v1alpha1"),
+    t("parametermanagertemplate_v1alpha1"),
     i(nil, "resource"),
   }
 end

@@ -8,6 +8,7 @@ return function()
     t("bigquerydatasetaccess_v1alpha1"),
     t("bigqueryjob_v1beta1"),
     t("bigqueryroutine_v1beta1"),
+    t("bigqueryrowaccesspolicy_v1alpha1"),
     t("bigquerytable_v1beta1"),
     i(nil, "resource"),
   }

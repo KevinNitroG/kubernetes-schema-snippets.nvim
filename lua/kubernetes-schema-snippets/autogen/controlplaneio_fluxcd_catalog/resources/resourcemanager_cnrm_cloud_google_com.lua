@@ -8,6 +8,7 @@ return function()
     t("project_v1beta1"),
     t("resourcemanagerlien_v1beta1"),
     t("resourcemanagerpolicy_v1beta1"),
+    t("resourcemanagertaghold_v1alpha1"),
     i(nil, "resource"),
   }
 end

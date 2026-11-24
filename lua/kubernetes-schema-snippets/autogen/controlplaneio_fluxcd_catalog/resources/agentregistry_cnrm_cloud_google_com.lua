@@ -5,6 +5,7 @@ local i = ls.insert_node
 return function()
   return {
     t("agentregistrybinding_v1alpha1"),
+    t("agentregistryservice_v1alpha1"),
     i(nil, "resource"),
   }
 end

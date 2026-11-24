@@ -26,6 +26,7 @@ return function()
     t("dataplexlake_v1alpha1"),
     t("dataplexmetadatafeed_v1alpha1"),
     t("dataplexmetadatajob_v1alpha1"),
+    t("dataplexpartition_v1alpha1"),
     t("dataplextask_v1alpha1"),
     t("dataplexzone_v1alpha1"),
     i(nil, "resource"),

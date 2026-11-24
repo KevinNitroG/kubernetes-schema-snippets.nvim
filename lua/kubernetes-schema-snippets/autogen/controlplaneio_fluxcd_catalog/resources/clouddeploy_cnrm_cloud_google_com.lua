@@ -9,6 +9,7 @@ return function()
     t("clouddeploydeliverypipeline_v1alpha1"),
     t("clouddeploydeliverypipeline_v1beta1"),
     t("clouddeploydeploypolicy_v1alpha1"),
+    t("clouddeployrelease_v1alpha1"),
     t("clouddeploytarget_v1alpha1"),
     i(nil, "resource"),
   }

@@ -4,6 +4,7 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("backupdrautoprotectionpolicy_v1alpha1"),
     t("backupdrbackupplan_v1alpha1"),
     t("backupdrbackupplan_v1beta1"),
     t("backupdrbackupplanassociation_v1alpha1"),
@@ -11,6 +12,7 @@ return function()
     t("backupdrbackupvault_v1alpha1"),
     t("backupdrbackupvault_v1beta1"),
     t("backupdrmanagementserver_v1alpha1"),
+    t("backupdrrestoreverificationplan_v1alpha1"),
     i(nil, "resource"),
   }
 end
