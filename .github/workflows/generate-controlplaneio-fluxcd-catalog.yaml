@@ -84,7 +84,7 @@ jobs:
             fi
           done
 
-      - uses: JohnnyMorganz/stylua-action@v4
+      - uses: JohnnyMorganz/stylua-action@v5
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
