@@ -6,6 +6,8 @@ return function()
   return {
     t("cloudhypervisormachine_v1alpha1"),
     t("cloudhypervisormachinetemplate_v1alpha1"),
+    t("firecrackermachine_v1alpha1"),
+    t("firecrackermachinetemplate_v1alpha1"),
     t("libvirtmachine_v1alpha1"),
     t("libvirtmachinetemplate_v1alpha1"),
     t("proxmoxmachine_v1alpha1"),
