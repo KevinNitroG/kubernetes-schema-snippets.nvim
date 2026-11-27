@@ -4,6 +4,8 @@ local i = ls.insert_node
 
 return function()
   return {
+    t("azurevirtualmachine_v1alpha1"),
+    t("azurevirtualmachinetemplate_v1alpha1"),
     t("cloudhypervisormachine_v1alpha1"),
     t("cloudhypervisormachinetemplate_v1alpha1"),
     t("firecrackermachine_v1alpha1"),
