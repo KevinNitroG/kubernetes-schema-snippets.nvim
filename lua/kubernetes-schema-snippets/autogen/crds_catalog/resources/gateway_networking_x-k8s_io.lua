@@ -8,6 +8,7 @@ return function()
     t("xbackendtrafficpolicy_v1alpha1"),
     t("xlistenerset_v1alpha1"),
     t("xmesh_v1alpha1"),
+    t("xtelemetrypolicy_v1alpha1"),
     i(nil, "resource"),
   }
 end
